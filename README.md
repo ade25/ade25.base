@@ -26,4 +26,8 @@ Plone project as a customization starting point.
 To install `ade25.base` you simply add ``ade25.base``
 to the list of eggs in your buildout, run buildout and restart Plone.
 Then, install `ade25.base` using the Add-ons control panel.
-``
+
+## TODO
+
+Adopt `IJsonRegistryAware` from **collective.cron** (https://github.com/collective/collective.cron) to actually edit JSON records via the control panel edit form. The implementation would need to add a load and dump function for
+actually managing the settings.
