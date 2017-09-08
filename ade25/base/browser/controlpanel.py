@@ -18,6 +18,13 @@ class IAde25BaseControlPanel(Interface):
         default=True,
         required=False,
     )
+    responsive_image_scales = schema.List(
+        title=_(u"Available Responsive Image Scales"),
+        value_type=schema.TextLine(
+            title=_(u"JSON image scale definition")
+        )
+    )
+
 
 
 class Ade25BaseControlPanelForm(RegistryEditForm):
