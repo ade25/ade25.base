@@ -3,8 +3,8 @@
 
 from zope.i18nmessageid import MessageFactory
 
-_ = MessageFactory('ade25.base')
+MessageFactory = MessageFactory('ade25.base')
 
 
 def initialize(context):
-    """Initializer called when used as a Zope 2 product."""
+    """Initializer called when used as a product."""

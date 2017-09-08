@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registry>
+    <records interface="ade25.base.browser.controlpanel.IAde25BaseControlPanel"
+             prefix="ade25base" />
+</registry>
