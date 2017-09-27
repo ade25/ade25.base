@@ -11,4 +11,24 @@
             permission="cmf.ManagePortal"
     />
 
+    <!-- Responsive image -->
+    <browser:page
+            for="Products.CMFCore.interfaces.IContentish"
+            name="figure"
+            class=".figure.ResponsiveImage"
+            template="figure.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25BaseLayer"
+    />
+
+    <!-- Responsive image -->
+    <browser:page
+            for="Products.CMFCore.interfaces.IContentish"
+            name="figure-preview"
+            class=".figure.ResponsiveImagePreview"
+            template="figure-preview.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25BaseLayer"
+    />
+
 </configure>

@@ -29,4 +29,9 @@
         type="theme"
     />
 
+    <utility
+        provides="ade25.base.interfaces.IResponsiveImageTool"
+        factory="ade25.base.imagetool.ResponsiveImagesTool"
+    />
+
 </configure>

@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+         metal:use-macro="context/main_template/macros/master"
+         i18n:domain="bfa.sitecontent">
+<body>
+
+<metal:main fill-slot="main">
+    <metal:content-core define-macro="main">
+        <div class="app-page__header">
+            <h1 class="app-page__title app-page__title--primary">
+                ${context/Title}
+            </h1>
+            <p class="app-page__abstract" tal:condition="python:context.Description">
+                ${context/Description}
+            </p>
+        </div>
+        <div class="app-page__main">
+            <div class="app-page__section app-page__section--figure"
+                tal:define="responsive_image python:context.restrictedTraverse('@@figure')(image_field_name='image', caption_field__name='image', scale='default', lqip=True, lazy_load=True)">
+                <span tal:replace="structure responsive_image" />
+            </div>
+        </div>
+    </metal:content-core>
+</metal:main>
+</body>
+</html>

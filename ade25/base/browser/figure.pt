@@ -1,0 +1,27 @@
+<tal:image tal:define="options view/options; image_field_name options/image_field_name; image_data python:view.get_image_data()">
+    <figure class="app-page__figure">
+        <div class="app-figure">
+            <img class="app-figure__content lazy-load image--lazy-load"
+                 src="${image_data/lqip}"
+                 data-src="${image_data/lg}"
+                 data-sizes="auto"
+                 data-parent-fit="contain"
+                 data-srcset="${image_data/xs},
+                              ${image_data/sm},
+                              ${image_data/md},
+                              ${image_data/lg},
+                              ${image_data/xl},
+                              ${image_data/xxl}"
+            />
+        </div>
+        <noscript>
+            <!-- Provide fallback for missing lazyload javascript -->
+            <img tal:define="scales context/@@images|nothing"
+                     tal:condition="python:scales"
+                     tal:replace="structure python: scales.scale(image_field_name, scale='mini').tag(css_class='app-image--standalone')" />
+        </noscript>
+        <figcaption tal:condition="python:context.image_caption">
+                ${context/image_caption}
+        </figcaption>
+    </figure>
+</tal:image>

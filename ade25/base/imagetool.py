@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 """Module providing an image scaling factory."""
+import json
+import six
 
-from Products.ZCatalog.interfaces import ICatalogBrain
 from plone import api
 from plone.app.contentlisting.interfaces import IContentListingObject
-from plone.scale import scale as image_scale
-from zope.component import getMultiAdapter
+from plone.scale import scale as image_scaler
+from Products.ZCatalog.interfaces import ICatalogBrain
+from plone.scale.interfaces import IScaledImageQuality
+from zope.component import getMultiAdapter, queryUtility
 from zope.globalrequest import getRequest
+
+from ade25.base.utils import get_filesystem_template
 
 IMG = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs='
 
@@ -14,62 +19,106 @@ IMG = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs='
 class ResponsiveImagesTool(object):
     """ Factory providing rescaling of project images """
 
-    def create(self, uuid, image_field='image'):
-        item = api.content.get(UID=uuid)
-        data = self._get_image_data(item, image_field)
+    def create(self, options):
+        item = api.content.get(UID=options['uuid'])
+        data = self._get_image_data(
+            item,
+            options['image_field_name'],
+            options['caption_field_name'],
+            options['scale'],
+            options['lqip'],
+            options['lazy_load']
+        )
         return data
 
-    def _get_image_data(self, item, image_field):
+    @staticmethod
+    def fallback_image_data():
+        data = {
+            'url': IMG,
+            'width': '1px',
+            'height': '1px',
+        }
+        return data
+
+    @staticmethod
+    def get_quality():
+        """Get plone.app.imaging's quality setting"""
+        default_scaled_image_quality = queryUtility(IScaledImageQuality)
+        if default_scaled_image_quality is None:
+            return None
+        return default_scaled_image_quality()
+
+    @staticmethod
+    def get_default_scale_info():
+        scale_info = get_filesystem_template('image-sizes-default.json')
+        try:
+            info = json.loads(scale_info)
+        except ValueError:
+            pass
+        return info
+
+    def _get_image_data(self,
+                        item,
+                        image_field,
+                        caption_field,
+                        scale,
+                        lqip,
+                        lazy_load):
         data = {}
-        sizes = ['small', 'medium', 'large', 'original', 'lqip']
-        idx = 0
-        for size in sizes:
-            idx += 0
-            img = self._get_scaled_img(item, image_field, size)
-            data[size] = '{0} {1}w {2}h'.format(
+        registry_settings = api.portal.get_registry_record(
+            'ade25base.responsive_image_scales'
+        )
+        registry_set = next((d for i, d in enumerate(registry_settings)
+                             if scale in d), None)
+        if registry_set:
+            scale_sizes = json.loads(registry_set)
+            sizes = scale_sizes[scale]
+        else:
+            sizes = self.get_default_scale_info()
+        for size_info in sizes:
+            scale_name = size_info['id']
+            img = self.generate_image(item, image_field, size_info)
+            data[scale_name] = '{0} {1}w {2}h'.format(
                 img['url'], img['width'], img['height']
             )
+        placeholder = self.generate_image(
+            item, image_field, size_info, generate_lqip=True)
+        data['lqip'] = '{0} {1}w {2}h'.format(
+            placeholder['url'], placeholder['width'], placeholder['height']
+        )
         return data
 
-    def _get_scaled_img(self, item, image_field, size):
-        request = getRequest()
-        if (
-                    ICatalogBrain.providedBy(item) or
-                    IContentListingObject.providedBy(item)
-        ):
-            obj = item.getObject()
+    def generate_image(self,
+                       item,
+                       image_field,
+                       scale_settings,
+                       generate_lqip=False):
+        """ function used for generating (and potentially storing)
+            image scales on demand
+        """
+        settings = scale_settings
+        if settings['quality'] == 'auto':
+            settings['quality'] = self.get_quality()
+        if hasattr(item, image_field):
+            stored_image = getattr(item, image_field)
+            if generate_lqip:
+                settings['width'] = stored_image.getImageSize()[0],
+                settings['height'] = stored_image.getImageSize()[1],
+                settings['direction'] = 'keep',
+                settings['quality'] = 10
+            # Generate scale
+            image_scale = image_scaler.scaleImage(
+                stored_image.data,
+                width=int(settings['width']),
+                height=int(settings['width']),
+                direction=settings['direction'],
+                quality=int(settings['quality'])
+            )
+            image_data = {
+                'url': image_scale[0],
+                'width': image_scale[2][0],
+                'height': image_scale[2][1]
+            }
         else:
-            obj = item
-        info = {}
-        if hasattr(obj, image_field):
-            scales = getMultiAdapter((obj, request), name='images')
-            if size == 'lgip':
-                stored_image = getattr(obj, image_field)
-                scale = image_scale.scaleImage(
-                    stored_image.data,
-                    width=stored_image.getImageSize()[0],
-                    height=stored_image.getImageSize()[1],
-                    direction='keep',
-                    quality=10
-                )
-            if size == 'small':
-                scale = scales.scale(image_field, width=300, height=300)
-            if size == 'medium':
-                scale = scales.scale(image_field, width=600, height=600)
-            if size == 'large':
-                scale = scales.scale(image_field, width=900, height=900)
-            else:
-                scale = scales.scale(image_field, width=1200, height=1200)
-            if scale is not None:
-                info['url'] = scale.url
-                info['width'] = scale.width
-                info['height'] = scale.height
-            else:
-                info['url'] = IMG
-                info['width'] = '1px'
-                info['height'] = '1px'
-        else:
-            info['url'] = IMG
-            info['width'] = '1px'
-            info['height'] = '1px'
-        return info
+            image_data = self.fallback_image_data()
+        return image_data
