@@ -3,15 +3,10 @@
         <div class="app-figure">
             <img class="app-figure__content lazy-load image--lazy-load"
                  src="${image_data/lqip}"
-                 data-src="${image_data/lg}"
+                 data-src="${image_data/origin}"
                  data-sizes="auto"
                  data-parent-fit="contain"
-                 data-srcset="${image_data/xs},
-                              ${image_data/sm},
-                              ${image_data/md},
-                              ${image_data/lg},
-                              ${image_data/xl},
-                              ${image_data/xxl}"
+                 data-srcset="${image_data/srcset}"
             />
         </div>
         <noscript>
@@ -20,8 +15,8 @@
                      tal:condition="python:scales"
                      tal:replace="structure python: scales.scale(image_field_name, scale='mini').tag(css_class='app-image--standalone')" />
         </noscript>
-        <figcaption tal:condition="python:context.image_caption">
-                ${context/image_caption}
+        <figcaption tal:condition="python:image_data['caption']">
+                ${image_data/caption}
         </figcaption>
     </figure>
 </tal:image>
