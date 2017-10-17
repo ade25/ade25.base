@@ -17,7 +17,7 @@ def get_filesystem_template(name, data=dict()):
 
 
 def default_image_scales():
-    available_scales = ('default', 'custom', 'ratio43', 'ratio163')
+    available_scales = ('default', 'custom', 'ratio43', 'ratio169')
     image_scales = list()
     for scale_name in available_scales:
         scale_info_template = 'image-sizes-{0}.json'.format(scale_name)
