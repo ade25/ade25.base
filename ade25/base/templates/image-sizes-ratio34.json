@@ -1,10 +1,10 @@
 {
-  "custom": [
+  "ratio-3:4": [
     {
       "id": "xs",
       "name": "XS",
       "size": "xs",
-      "width": "320",
+      "width": "240",
       "height": "320",
       "direction": "down",
       "quality": "auto"
@@ -13,7 +13,7 @@
       "id": "sm",
       "name": "SM",
       "size": "sm",
-      "width": "540",
+      "width": "405",
       "height": "540",
       "direction": "down",
       "quality": "auto"
@@ -22,7 +22,7 @@
       "id": "md",
       "name": "MD",
       "size": "md",
-      "width": "720",
+      "width": "540",
       "height": "720",
       "direction": "down",
       "quality": "auto"
@@ -31,7 +31,7 @@
       "id": "lg",
       "name": "LG",
       "size": "lg",
-      "width": "960",
+      "width": "720",
       "height": "960",
       "direction": "down",
       "quality": "auto"
@@ -40,7 +40,7 @@
       "id": "xl",
       "name": "XL",
       "size": "xl",
-      "width": "1140",
+      "width": "855",
       "height": "1140",
       "direction": "down",
       "quality": "auto"
@@ -49,7 +49,7 @@
       "id": "xxl",
       "name": "XXL",
       "size": "xxl",
-      "width": "1400",
+      "width": "1050",
       "height": "1400",
       "direction": "down",
       "quality": "auto"
