@@ -17,12 +17,20 @@
 
     <!-- Register the installation GenericSetup extension profile -->
     <genericsetup:registerProfile
-        name="default"
-        title="ade25.base"
-        directory="profiles/default"
-        description="Extension profile for ade25.base."
-        provides="Products.GenericSetup.interfaces.EXTENSION"
+            name="default"
+            title="Ade25 Base"
+            directory="profiles/default"
+            description="Global utilities and tools (Mailer, Responsive Image Support and Navigation)"
+            provides="Products.GenericSetup.interfaces.EXTENSION"
         />
+    <!-- Uninstall -->
+    <genericsetup:registerProfile
+            name="uninstall"
+            title="Uninstall ade25 global tools (ade25.base)"
+            directory="profiles/uninstall"
+            description="Uninstall Ade25 global tools and utilities"
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
 
     <plone:static
         directory="resources"
