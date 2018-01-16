@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+         metal:use-macro="context/main_template/macros/master"
+         i18n:domain="lra.sitecontent">
+<body>
+
+<metal:main fill-slot="main">
+    <metal:content-core define-macro="main">
+        <nav class="app-nav-bar app-nav-bar--hidden slideInRight animated" id="app-nav-bar" role="navigation"
+                 tal:define="nav_tree python:view.nav_items(); nav_items python:nav_tree['children']">
+            <div class="app-nav-bar__header">
+
+                <div class="app-nav-bar__title">
+                    Navigation
+                </div>
+
+                <button type="button" class="app-nav-bar__toggle app-nav-bar__toggle--close js-nav-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    X
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 36 36">
+                        <polygon fill-rule="evenodd" points="27.899 9.515 26.485 8.101 18 16.586 9.514 8.101 8.1 9.515 16.586 18 8.1 26.486 9.514 27.9 18 19.414 26.485 27.9 27.899 26.486 19.414 18"/>
+                    </svg>
+                </button>
+            </div>
+            <ul class="app-nav" id="app-nav">
+                <tal:block tal:repeat="node nav_items">
+                    <li class="app-nav__item app-nav__item--active"
+                             tal:define="show_children   node/show_children;
+                            children        node/children;
+                            item_url        node/getURL;
+                            is_current      node/currentItem;
+                            is_in_path      node/currentParent;
+                            li_class        python:' app-nav__item--active' if is_current else '';
+                            li_extr_class   python:' app-nav__item--open' if is_in_path else '';
+                            li_expandable_class python:' app-nav__item--has-children' if children else ''"
+                             tal:attributes="class string:app-nav__item app-nav__item--${node/normalized_id}${li_class}${li_extr_class}${li_expandable_class}">
+                        <a class="app-nav__link app-nav__link--${node/UID}" href="${node/getURL}"
+                                 tal:define="item_class python:is_current and ' app-nav__link--active' or ''"
+                                 tal:attributes="class string:app-nav__link app-nav__link--${node/UID}${item_class}">
+                            <span class="app-nav__tab" tal:content="python:node['Title']"></span>
+                        </a>
+                        <tal:children condition="children">
+                            <ul class="app-nav app-nav--level-1"
+                                     tal:condition="python: children and show_children">
+                                <tal:items tal:repeat="child children">
+                                    <li class="app-nav__item"
+                                             tal:define="child_is_current child/currentItem;
+                                                    child_class python:' app-nav__item--active' if child_is_current else ''"
+                                             tal:attributes="class string:app-nav__item${child_class}">
+                                        <a class="app-nav__link app-nav__link--${child/normalized_id}" href="${child/getURL}">
+                                            <span class="app-nav__tab">${child/Title}</span>
+                                        </a>
+                                    </li>
+                                </tal:items>
+                            </ul>
+                        </tal:children>
+                    </li>
+                </tal:block>
+            </ul>
+        </nav>
+    </metal:content-core>
+</metal:main>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/prefs_main_template/macros/master"
+      i18n:domain="ade25.base">
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_main">
+
+    <div metal:use-macro="context/global_statusmessage/macros/portal_message">
+        Portal status message
+    </div>
+
+    <div class="configlet">
+
+        <h1 class="documentFirstHeading"
+                 i18n:translate="heading_ade25_settings">Ade25 Site Settings</h1>
+
+        <a id="setup-link" class="link-parent"
+                 tal:attributes="href string:${portal_url}/@@overview-controlpanel"
+                 i18n:translate="label_up_to_plone_setup">
+            Up to Site Setup
+        </a>
+
+        <p i18n:translate="description_caching_ipmort">
+            Choose a profile below to import cache settings. Additional
+            profiles may be installed by third party products.
+            <strong>Warning:</strong> This may overwrite existing
+            settings.
+        </p>
+
+    </div>
+</div>
+
+</body>
+</html>
