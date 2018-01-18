@@ -2,4 +2,11 @@
 <registry>
     <records interface="ade25.base.browser.controlpanel.IAde25BaseControlPanel"
              prefix="ade25base" />
+
+    <records interface="ade25.base.browser.controlpanel.IAde25BaseControlPanelImages"
+             prefix="ade25base" />
+
+    <records interface="ade25.base.browser.controlpanel.IAde25BaseControlPanelNavigation"
+             prefix="ade25base" />
+
 </registry>

@@ -43,7 +43,46 @@ class BaseView(object):
         return self.index()
 
 
-class IAde25BaseControlPanel(Interface):
+class Ade25BaseSettings(BrowserView):
+    """ Ade25 settings overview """
+
+    def update(self):
+        if super(Ade25BaseSettings, self).update():
+            if 'form.button.setup' in self.request.form:
+                self.processSetup()
+
+    def processSetup(self):
+        IStatusMessage(self.request).addStatusMessage(
+            _(u'Setup initialized.'), 'info')
+
+
+#class Ade25BaseSettingsImages(BrowserView):
+#    """ Ade25 settings overview """
+#
+#    def update(self):
+#        if super(Ade25BaseSettingsImages, self).update():
+#            if 'form.button.setup' in self.request.form:
+#                self.processSetup()
+#
+#    def processSetup(self):
+#        IStatusMessage(self.request).addStatusMessage(
+#            _(u'Setup initialized.'), 'info')
+#
+
+class Ade25BaseSettingsNavigation(BrowserView):
+    """ Ade25 settings overview """
+
+    def update(self):
+        if super(Ade25BaseSettingsNavigation, self).update():
+            if 'form.button.setup' in self.request.form:
+                self.processSetup()
+
+    def processSetup(self):
+        IStatusMessage(self.request).addStatusMessage(
+            _(u'Setup initialized.'), 'info')
+
+
+class IAde25BaseControlPanelImages(Interface):
 
     lqip_enabled = schema.Bool(
         title=_(u"Enable LQIP Support"),
@@ -62,27 +101,13 @@ class IAde25BaseControlPanel(Interface):
     )
 
 
-class Ade25BaseControlPanelForm(RegistryEditForm):
-    schema = IAde25BaseControlPanel
+class Ade25BaseControlPanelImagesForm(RegistryEditForm):
+    schema = IAde25BaseControlPanelImages
     schema_prefix = "ade25base"
-    label = u'Ade25 Base Site Settings'
+    label = u'Ade25 Responsive Image Settings'
 
 
-Ade25BaseControlPanelView = layout.wrap_form(
-    Ade25BaseControlPanelForm,
+Ade25BaseSettingsImages = layout.wrap_form(
+    Ade25BaseControlPanelImagesForm,
     ControlPanelFormWrapper
 )
-
-
-class Ade25BaseSettings(BrowserView):
-    """ Ade25 settings overview """
-
-    def update(self):
-        import pdb; pdb.set_trace()
-        if super(Ade25BaseSettings, self).update():
-            if 'form.button.setup' in self.request.form:
-                self.processSetup()
-
-    def processSetup(self):
-        IStatusMessage(self.request).addStatusMessage(
-            _(u'Setup initialized.'), 'info')
