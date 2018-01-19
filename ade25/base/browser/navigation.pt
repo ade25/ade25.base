@@ -1,5 +1,5 @@
 <div metal:define-macro="site-nav-tree"
-         i18n:domain="bfa.sitecontent">
+         i18n:domain="ade25.base">
     <nav class="app-nav-bar app-nav-bar--hidden" id="app-nav-bar" role="navigation"
              tal:define="nav_tree python:view.nav_items(); nav_items python:nav_tree['children']">
         <div class="app-nav-bar__header">
