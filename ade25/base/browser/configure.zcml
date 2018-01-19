@@ -30,14 +30,16 @@
     />
 
     <!-- Site navigation -->
-    <browser:page
-            for="plone.app.layout.navigation.interfaces.INavigationRoot"
-            name="main-site-navigation"
-            class=".navigation.SiteNavigation"
+    <browser:viewlet
+            name="site-navigation-viewlet"
+            manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+            for="*"
+            class=".navigation.SiteNavigationViewlet"
             template="navigation.pt"
             permission="zope2.View"
             layer="..interfaces.IAde25BaseLayer"
     />
+
 
     <!-- Responsive image -->
     <browser:page

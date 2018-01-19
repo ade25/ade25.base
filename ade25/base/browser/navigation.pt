@@ -38,13 +38,39 @@
                             li_expandable_class python:' app-nav__item--has-children' if children else ''"
                              tal:attributes="class string:app-nav__item app-nav__item--${node/normalized_id}${li_class}${li_extr_class}${li_expandable_class}">
                         <a class="app-nav__link app-nav__link--${node/UID}" href="${node/getURL}"
-                                 tal:define="item_class python:is_current and ' app-nav__link--active' or ''"
-                                 tal:attributes="class string:app-nav__link app-nav__link--${node/UID}${item_class}">
-                            <span class="app-nav__tab" tal:content="python:node['Title']"></span>
+                                 tal:define="item_class python:is_current and ' app-nav__link--active' or '';
+                                        item_in_path_class python:is_in_path and ' app-nav__link--open' or '';
+                                                expandable_class python:' app-nav__link--has-icon app-nav__link--has-children' if children else ''"
+                                 tal:attributes="class string:app-nav__link app-nav__link--${node/UID}${item_class}${item_in_path_class}${expandable_class};
+                                data-toggle python:'fly-out' if children else 'disabled'">
+                                <span class="app-nav__tab"
+                                         tal:attributes="class python:'app-nav__tab app-nav__tab--trigger' if children else 'app-nav__tab'"
+                                         tal:content="python:node['Title']"></span>
+                            <span class="app-nav__tab--action" tal:condition="python:children and show_children">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 36 36">
+                                            <polygon fill-rule="evenodd" points="14.707 26.707 13.293 25.293 20.586 18 13.293 10.707 14.707 9.293 23.414 18"/>
+                                        </svg>
+                                </span>
                         </a>
                         <tal:children condition="children">
                             <ul class="app-nav app-nav--level-1"
                                      tal:condition="python: children and show_children">
+                                <li class="app-nav__item app-nav__item--back-link">
+                                    <a class="app-nav__link app-nav__link--back-link js-drawer-close" href="${node/getURL}" i18n:translate="">
+                                    <span class="app-nav__tab--action">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 36 36">
+                                            q<polygon fill-rule="evenodd" points="21.293 9.293 22.707 10.707 15.414 18 22.707 25.293 21.293 26.707 12.586 18"/>
+                                        </svg>
+                                    </span>
+                                        <span class="app-nav__tab app-nav__tab--hide-text">
+                                        Back
+                                    </span>
+
+                                    </a>
+                                    <a class="app-nav__link app-nav__link" href="${node/getURL}">
+                                        <span class="app-nav__tab">${node/Title}</span>
+                                    </a>
+                                </li>
                                 <tal:items tal:repeat="child children">
                                     <li class="app-nav__item"
                                              tal:define="child_is_current child/currentItem;

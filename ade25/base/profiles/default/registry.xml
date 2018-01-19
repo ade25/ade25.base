@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <registry>
-    <records interface="ade25.base.browser.controlpanel.IAde25BaseControlPanel"
-             prefix="ade25base" />
 
     <records interface="ade25.base.browser.controlpanel.IAde25BaseControlPanelImages"
-             prefix="ade25base" />
+             prefix="ade25.base" />
 
     <records interface="ade25.base.browser.controlpanel.IAde25BaseControlPanelNavigation"
-             prefix="ade25base" />
+             prefix="ade25.base" />
 
 </registry>

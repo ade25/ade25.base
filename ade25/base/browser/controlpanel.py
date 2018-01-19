@@ -56,30 +56,37 @@ class Ade25BaseSettings(BrowserView):
             _(u'Setup initialized.'), 'info')
 
 
-#class Ade25BaseSettingsImages(BrowserView):
-#    """ Ade25 settings overview """
-#
-#    def update(self):
-#        if super(Ade25BaseSettingsImages, self).update():
-#            if 'form.button.setup' in self.request.form:
-#                self.processSetup()
-#
-#    def processSetup(self):
-#        IStatusMessage(self.request).addStatusMessage(
-#            _(u'Setup initialized.'), 'info')
-#
+class IAde25BaseControlPanelNavigation(Interface):
+    """ Navigation settings """
 
-class Ade25BaseSettingsNavigation(BrowserView):
-    """ Ade25 settings overview """
+    display_home_link = schema.Bool(
+        title=_(u"Enable Home Link"),
+        description=_(u"Choose if the main navigation should include a home "
+                      u"link pointing at the front page."),
+        default=False,
+        required=False
+    )
 
-    def update(self):
-        if super(Ade25BaseSettingsNavigation, self).update():
-            if 'form.button.setup' in self.request.form:
-                self.processSetup()
+    listed_content_types = schema.List(
+        title=_(u"Listed Content Types"),
+        value_type=schema.Choice(
+            vocabulary='plone.app.vocabularies.ReallyUserFriendlyTypes'
+        ),
+        default=list(),
+        required=False,
+    )
 
-    def processSetup(self):
-        IStatusMessage(self.request).addStatusMessage(
-            _(u'Setup initialized.'), 'info')
+
+class Ade25BaseControlPanelNavigationForm(RegistryEditForm):
+    schema = IAde25BaseControlPanelNavigation
+    schema_prefix = "ade25.base"
+    label = u'Ade25 Responsive Navigation Settings'
+
+
+Ade25BaseSettingsNavigation = layout.wrap_form(
+    Ade25BaseControlPanelNavigationForm,
+    ControlPanelFormWrapper
+)
 
 
 class IAde25BaseControlPanelImages(Interface):
@@ -103,7 +110,7 @@ class IAde25BaseControlPanelImages(Interface):
 
 class Ade25BaseControlPanelImagesForm(RegistryEditForm):
     schema = IAde25BaseControlPanelImages
-    schema_prefix = "ade25base"
+    schema_prefix = "ade25.base"
     label = u'Ade25 Responsive Image Settings'
 
 
