@@ -11,15 +11,14 @@ from plone.app.layout.viewlets import ViewletBase
 class SiteNavigationViewlet(ViewletBase):
     """ Context aware responsive navigation viewlet """
 
-    def update(self):
-        context = aq_inner(self.context)
-
     @staticmethod
     def section_types():
         settings = api.portal.get_registry_record(
             name='ade25.base.listed_content_types'
         )
-        return settings
+        if settings:
+            return settings
+        return ['Folder', ]
 
     def build_nav_tree(self, root, query):
         """
@@ -62,63 +61,17 @@ class SiteNavigationViewlet(ViewletBase):
     # @ram.cache(_navigation_cachekey)
     def nav_items(self):
         portal = api.portal.get()
+        navigation_types = ['Folder', ]
+        settings = api.portal.get_registry_record(
+            name='ade25.base.listed_content_types'
+        )
+        if settings:
+            navigation_types = settings
         nav_tree_query = {
-            'portal_type': self.section_types()
+            'portal_type': navigation_types
         }
         brains = self.build_nav_tree(
             portal,
             query=nav_tree_query
         )
         return brains
-
-
-class SiteNavigation(BrowserView):
-
-    def __call__(self):
-        return self.render()
-
-    def render(self):
-        return self.index()
-
-    def build_nav_tree(self, root, query):
-        """
-        Create a list of portal_catalog queried items
-
-        @param root: Content item which acts as a navigation root
-
-        @param query: Dictionary of portal_catalog query parameters
-
-        @return: Dictionary of navigation tree
-        """
-
-        # Navigation tree base portal_catalog query parameters
-        applied_query = {
-            'path': '/'.join(root.getPhysicalPath()),
-            'sort_on': 'getObjPositionInParent'
-        }
-        # Apply caller's filters
-        applied_query.update(query)
-        # - use navigation portlet strategy as base
-        strategy = DefaultNavtreeStrategy(root)
-        strategy.rootPath = '/'.join(root.getPhysicalPath())
-        strategy.showAllParents = False
-        strategy.bottomLevel = 999
-        # This will yield out tree of nested dicts of
-        # item brains with retrofitted navigational data
-        tree = buildFolderTree(root, root, query, strategy=strategy)
-        return tree
-
-    def nav_items(self):
-        portal = api.portal.get()
-        nav_tree_query = {
-            'portal_type': [
-                'ade25.sitecontent.sectionfolder',
-                'ade25.sitecontent.contentpage'
-            ]
-        }
-        brains = self.build_nav_tree(
-            portal,
-            query=nav_tree_query
-        )
-        return brains
-
