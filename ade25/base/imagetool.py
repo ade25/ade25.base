@@ -102,7 +102,7 @@ class ResponsiveImagesTool(object):
                 original_scale['height']
             )
             registry_settings = api.portal.get_registry_record(
-                'ade25base.responsive_image_scales'
+                'ade25.base.responsive_image_scales'
             )
             registry_set = next((d for i, d in enumerate(registry_settings)
                                  if scale in d), None)
