@@ -4,12 +4,42 @@
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="ade25.base">
 
+    <!-- Control panels -->
     <browser:page
             name="ade25-base-controlpanel"
             for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-            class=".controlpanel.Ade25BaseControlPanelView"
+            class=".controlpanel.Ade25BaseSettings"
+            permission="cmf.ManagePortal"
+            template="settings.pt"
+    />
+
+    <browser:page
+            name="ade25-base-settings-images"
+            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+            class=".controlpanel.Ade25BaseSettingsImages"
+            template="settings-images.pt"
             permission="cmf.ManagePortal"
     />
+
+    <browser:page
+            name="ade25-base-settings-navigation"
+            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+            class=".controlpanel.Ade25BaseSettingsNavigation"
+            template="settings-navigation.pt"
+            permission="cmf.ManagePortal"
+    />
+
+    <!-- Site navigation -->
+    <browser:viewlet
+            name="site-navigation-viewlet"
+            manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+            for="*"
+            class=".navigation.SiteNavigationViewlet"
+            template="navigation.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25BaseLayer"
+    />
+
 
     <!-- Responsive image -->
     <browser:page
