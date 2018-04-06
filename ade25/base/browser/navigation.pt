@@ -10,9 +10,6 @@
             <button type="button" class="app-nav-bar__toggle app-nav-bar__toggle--close js-nav-toggle" id="js-nav-toggle">
                 <span class="sr-only">Toggle navigation</span>
                 &#9776;
-                <svg width="100%" height="100%" viewBox="0 0 36 36">
-                    <polygon fill-rule="evenodd" points="27.899 9.515 26.485 8.101 18 16.586 9.514 8.101 8.1 9.515 16.586 18 8.1 26.486 9.514 27.9 18 19.414 26.485 27.9 27.899 26.486 19.414 18"/>
-                </svg>
             </button>
         </div>
         <ul class="app-nav" id="app-nav">
