@@ -9,11 +9,11 @@
 
             <button type="button" class="app-nav-bar__toggle app-nav-bar__toggle--close js-nav-toggle" id="js-nav-toggle">
                 <span class="sr-only">Toggle navigation</span>
-                <span class="app-nav__toggle app-nav__toggle--open">
+                <span class="app-nav__toggle app-nav__toggle--open" id="nav-toggle-open">
                     &#9776;
                 </span>
                 <span class="app-nav__toggle app-nav__toggle--close">
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 36 36"><polygon fill-rule="evenodd" points="27.899 9.515 26.485 8.101 18 16.586 9.514 8.101 8.1 9.515 16.586 18 8.1 26.486 9.514 27.9 18 19.414 26.485 27.9 27.899 26.486 19.414 18"/>
+                    <svg class="app-nav__toggle-icon" id="nav-toggle-close" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 36 36"><polygon fill-rule="evenodd" points="27.899 9.515 26.485 8.101 18 16.586 9.514 8.101 8.1 9.515 16.586 18 8.1 26.486 9.514 27.9 18 19.414 26.485 27.9 27.899 26.486 19.414 18"/>
                     </svg>
                  </span>
             </button>
