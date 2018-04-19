@@ -9,10 +9,10 @@
                 "palette": {
                     "popup": {
                         "background": "#fff",
-                        "text": "#38172d"
+                        "text": "#545454"
                     },
                     "button": {
-                        "background": "#38172d",
+                        "background": "#545454",
                         "text": "#ffffff"
                     }
                 },
