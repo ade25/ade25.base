@@ -1,5 +1,6 @@
 <div metal:define-macro="site-cc"
          i18n:domain="ade25.base">
+    <div class="site-cc" id="cookie-consent" tal:condition="view/enabled">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"></script>
     <script>
@@ -34,5 +35,5 @@
             }
         }
     </script>
-
+    </div>
 </div>
