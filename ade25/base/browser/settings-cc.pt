@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+         metal:use-macro="context/prefs_main_template/macros/master"
+         i18n:domain="ade25.base">
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_main">
+
+    <div metal:use-macro="context/global_statusmessage/macros/portal_message">
+        Portal status message
+    </div>
+
+    <div class="app-control-panel configlet">
+        <
+        <div class="app-page__header">
+            <h1 class="app-page__title app-page__title--primary" i18n:translate="">
+                Ade25 Cookie Consent
+            </h1>
+            <p class="app-page__abstract">
+                Configure cookie consent message behavior.
+            </p>
+            <a id="setup-link" class="app-button app-button--primary link-parent"
+                     tal:attributes="href string:${portal_url}/@@overview-controlpanel"
+                     i18n:translate="label_up_to_plone_setup">
+                Up to Site Setup
+            </a>
+            <a id="setup-link" class="app-button app-button--default link-parent"
+                     tal:attributes="href string:${portal_url}/@@ade25-base-controlpanel"
+                     i18n:translate="">
+                Ade25 Settings Overview
+            </a>
+        </div>
+
+        <div class="app-page__main">
+            <div class="app-page__header">
+                <h2>Settings</h2>
+            </div>
+            <div class="app-page__section" id="layout-contents">
+                <span tal:replace="structure view/contents" />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

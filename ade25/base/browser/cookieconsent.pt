@@ -1,0 +1,38 @@
+<div metal:define-macro="site-cc"
+         i18n:domain="ade25.base">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function(){
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#fff",
+                        "text": "#38172d"
+                    },
+                    "button": {
+                        "background": "#38172d",
+                        "text": "#ffffff"
+                    }
+                },
+                "content": {
+                    "message": "Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, verwenden wir Cookies. Durch die weitere Nutzung der Webseite stimmen Sie der Verwendung von Cookies zu.\n\nWeitere Informationen zu Cookies erhalten Sie in",
+                    "dismiss": "Einverstanden",
+                    "link": "unserer Datenschutzerklärung.",
+                    "href": "/datenschutz"
+                },
+                "position": "top",
+                "onPopupOpen": function () {pushDown(this.element.clientHeight);},
+                "onPopupClose": function () {pushDown(0);}
+            })
+        });
+        function pushDown(height) {
+            var pageBody = document.getElementsByTagName('body')[0];
+            pageBody.classList.add('js-cc--visible');
+            if (height === 0) {
+                pageBody.classList.remove('js-cc--visible');
+            }
+        }
+    </script>
+
+</div>

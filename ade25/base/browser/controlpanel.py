@@ -118,3 +118,51 @@ Ade25BaseSettingsImages = layout.wrap_form(
     Ade25BaseControlPanelImagesForm,
     ControlPanelFormWrapper
 )
+
+
+class IAde25BaseControlPanelCookieConsent(Interface):
+
+    cc_enabled = schema.Bool(
+        title=_(u"Enable Cookie Consent"),
+        description=_(u"Activate cookie consent message viewlet"),
+        default=False,
+        required=False,
+    )
+    cc_message = schema.Text(
+        title=_(u"CC Message"),
+        description=_(u"Enter cookie consent message"),
+        default=_(u"This website uses cookies to ensure you get the best "
+                  u"experience on our website. Learn more by visiting our "),
+        required=False
+    )
+    cc_link_text = schema.TextLine(
+        title=_(u"CC Learn more link text"),
+        description=_(u"Enter link text for privacy notice"),
+        default=_(u"data protection policy."),
+        required=False
+    )
+    cc_link_target = schema.TextLine(
+        title=_(u"CC Link Target"),
+        description=_(u"Enter relative location of privacy and data "
+                      u"protection notice page"),
+        default=u'/datenschutzerklaerung',
+        required=False
+    )
+    cc_dismiss_text = schema.TextLine(
+        title=_(u"CC Dismiss button"),
+        description=_(u"Add dismiss button text"),
+        default=_(u"Ok"),
+        required=False
+    )
+
+
+class Ade25BaseControlPanelCookieConsentForm(RegistryEditForm):
+    schema = IAde25BaseControlPanelCookieConsent
+    schema_prefix = "ade25.base"
+    label = u'Ade25 Cookie Consent Settings'
+
+
+Ade25BaseSettingsCookieConsent = layout.wrap_form(
+    Ade25BaseControlPanelCookieConsentForm,
+    ControlPanelFormWrapper
+)

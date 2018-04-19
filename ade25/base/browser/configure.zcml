@@ -29,6 +29,14 @@
             permission="cmf.ManagePortal"
     />
 
+    <browser:page
+            name="ade25-base-settings-cc"
+            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+            class=".controlpanel.Ade25BaseSettingsCookieConsent"
+            template="settings-cc.pt"
+            permission="cmf.ManagePortal"
+    />
+
     <!-- Site navigation -->
     <browser:viewlet
             name="site-navigation-viewlet"
