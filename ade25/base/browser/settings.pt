@@ -15,7 +15,6 @@
     </div>
 
     <div class="app-page--control-panel configlet">
-        <
         <div class="app-page__header">
             <h1 class="app-page__title app-page__title--primary" i18n:translate="">
                 Ade25 Site Settings
@@ -29,8 +28,6 @@
                      i18n:translate="label_up_to_plone_setup">
                 Up to Site Setup
             </a>
-
-
         </div>
 
         <div class="app-page__main">

@@ -3,7 +3,8 @@
     <div class="site-cc" id="cookie-consent" tal:condition="view/enabled">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"></script>
-    <script>
+        <code tal:content="view/position"></code>
+    <script tal:define="position view/position">
         window.addEventListener("load", function(){
             window.cookieconsent.initialise({
                 "palette": {
@@ -16,13 +17,13 @@
                         "text": "#ffffff"
                     }
                 },
+                <tal:position tal:condition="python: position and position == 'top'">"position": "top",</tal:position>
                 "content": {
                     "message": "Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, verwenden wir Cookies. Durch die weitere Nutzung der Webseite stimmen Sie der Verwendung von Cookies zu.\n\nWeitere Informationen zu Cookies erhalten Sie in",
                     "dismiss": "Einverstanden",
                     "link": "unserer Datenschutzerklärung.",
                     "href": "/datenschutz"
                 },
-                "position": "top",
                 "onPopupOpen": function () {pushDown(this.element.clientHeight);},
                 "onPopupClose": function () {pushDown(0);}
             })

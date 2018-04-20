@@ -16,3 +16,10 @@ class CookieConsentViewlet(ViewletBase):
         if enabled:
             return enabled
         return False
+
+    @staticmethod
+    def position():
+        cc_position = api.portal.get_registry_record(
+            name='ade25.base.cc_position'
+        )
+        return cc_position
