@@ -3,7 +3,6 @@
     <div class="site-cc" id="cookie-consent" tal:condition="view/enabled">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"></script>
-        <code tal:content="view/position"></code>
     <script tal:define="position view/position">
         window.addEventListener("load", function(){
             window.cookieconsent.initialise({
