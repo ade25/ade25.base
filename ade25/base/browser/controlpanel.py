@@ -118,3 +118,81 @@ Ade25BaseSettingsImages = layout.wrap_form(
     Ade25BaseControlPanelImagesForm,
     ControlPanelFormWrapper
 )
+
+
+class IAde25BaseControlPanelCookieConsent(Interface):
+
+    cc_enabled = schema.Bool(
+        title=_(u"Enable Cookie Consent"),
+        description=_(u"Activate cookie consent message viewlet"),
+        default=False,
+        required=False,
+    )
+    cc_position = schema.Choice(
+        title=_(u"CC Popover Position"),
+        description=_(u"Please select where to display the cookie consent "
+                      u"pop over banner"),
+        vocabulary=a25utils.available_cc_positions(),
+        required=True,
+        default=u'bottom'
+    )
+    cc_color = schema.TextLine(
+        title=_(u"CC Text Color"),
+        description=_(u"The entered text color will be used as background "
+                      u"color for the popover button"),
+        required=False,
+    )
+    cc_color_bg = schema.TextLine(
+        title=_(u"CC Background Color"),
+        description=_(u"The entered value will be used as button text color."),
+        required=False,
+    )
+    cc_custom = schema.Bool(
+        title=_(u"Override Standard Cookie Consent Text"),
+        description=_(u"Activate to use the custom text fields available below."
+                      u"Otherwise the default cookie consent message will be "
+                      u"automatically rendered which will be appropriate for "
+                      u"most sites. The standard cookie message assumes a "
+                      u"page to be available under the URI "
+                      u"${PORTAL_URL}/datenschutz."),
+        default=False,
+        required=False,
+    )
+    cc_message = schema.Text(
+        title=_(u"CC Message"),
+        description=_(u"Enter custom cookie consent message"),
+        default=_(u"This website uses cookies to ensure you get the best "
+                  u"experience on our website. Learn more by visiting our "),
+        required=False
+    )
+    cc_link_text = schema.TextLine(
+        title=_(u"CC Learn more link text"),
+        description=_(u"Enter custom link text for privacy notice"),
+        default=_(u"data protection policy."),
+        required=False
+    )
+    cc_link_target = schema.TextLine(
+        title=_(u"CC Link Target"),
+        description=_(u"Enter relative location of privacy and data "
+                      u"protection notice page"),
+        default=u'/datenschutzerklaerung',
+        required=False
+    )
+    cc_dismiss_text = schema.TextLine(
+        title=_(u"CC Dismiss button"),
+        description=_(u"Add custom dismiss button text"),
+        default=_(u"Ok"),
+        required=False
+    )
+
+
+class Ade25BaseControlPanelCookieConsentForm(RegistryEditForm):
+    schema = IAde25BaseControlPanelCookieConsent
+    schema_prefix = "ade25.base"
+    label = u'Ade25 Cookie Consent Settings'
+
+
+Ade25BaseSettingsCookieConsent = layout.wrap_form(
+    Ade25BaseControlPanelCookieConsentForm,
+    ControlPanelFormWrapper
+)

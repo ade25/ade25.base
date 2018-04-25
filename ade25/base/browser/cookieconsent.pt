@@ -1,0 +1,44 @@
+<div metal:define-macro="site-cc"
+         i18n:domain="ade25.base">
+    <div class="site-cc" id="cookie-consent" tal:condition="view/enabled">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"></script>
+        <tal:cc tal:define="settings view/settings">
+            <script>
+                window.addEventListener("load", function(){
+                    var $ccDismiss = "<tal:dismiss tal:content="settings/dismiss_text"></tal:dismiss>",
+                        $ccMessage = "<tal:message tal:content="settings/message"></tal:message>",
+                        $ccPrivacyPolicy = "<tal:link tal:content="settings/link_text"></tal:link>";
+                    window.cookieconsent.initialise({
+                                "palette": {
+                                    "popup": {
+                                        "background": "<tal:bg tal:content="settings/color_bg"></tal:bg>",
+                                        "text": "<tal:color tal:content="settings/color"></tal:color>"
+                                    },
+                                    "button": {
+                                        "background": "<tal:color tal:content="settings/color"></tal:color>",
+                                        "text": "<tal:bg tal:content="settings/color_bg"></tal:bg>"
+                                    }
+                                },
+                            <tal:position tal:define="position settings/position" tal:condition="python:position and position == 'top'">"position": "top",</tal:position>
+                    "content": {
+                        "message": $ccMessage,
+                        "dismiss": $ccDismiss,
+                        "link": $ccPrivacyPolicy,
+                        "href": "<tal:uri tal:content="settings/link_target"></tal:uri>"
+                    },
+                    "onPopupOpen": function () {pushDown(this.element.clientHeight);},
+                    "onPopupClose": function () {pushDown(0);}
+                })
+                });
+                function pushDown(height) {
+                    var pageBody = document.getElementsByTagName('body')[0];
+                    pageBody.classList.add('js-cc--visible');
+                    if (height === 0) {
+                        pageBody.classList.remove('js-cc--visible');
+                    }
+                }
+            </script>
+        </tal:cc>
+    </div>
+</div>

@@ -9,10 +9,13 @@
 
             <button type="button" class="app-nav-bar__toggle app-nav-bar__toggle--close js-nav-toggle" id="js-nav-toggle">
                 <span class="sr-only">Toggle navigation</span>
-                &#9776;
-                <svg width="100%" height="100%" viewBox="0 0 36 36">
-                    <polygon fill-rule="evenodd" points="27.899 9.515 26.485 8.101 18 16.586 9.514 8.101 8.1 9.515 16.586 18 8.1 26.486 9.514 27.9 18 19.414 26.485 27.9 27.899 26.486 19.414 18"/>
-                </svg>
+                <span class="app-nav__toggle app-nav__toggle--open" id="nav-toggle-open">
+                    &#9776;
+                </span>
+                <span class="app-nav__toggle app-nav__toggle--close">
+                    <svg class="app-nav__toggle-icon" id="nav-toggle-close" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 36 36"><polygon fill-rule="evenodd" points="27.899 9.515 26.485 8.101 18 16.586 9.514 8.101 8.1 9.515 16.586 18 8.1 26.486 9.514 27.9 18 19.414 26.485 27.9 27.899 26.486 19.414 18"/>
+                    </svg>
+                 </span>
             </button>
         </div>
         <ul class="app-nav" id="app-nav">
@@ -46,13 +49,13 @@
                         <ul class="app-nav app-nav--level-1"
                                  tal:condition="python: children and show_children">
                             <li class="app-nav__item app-nav__item--back-link">
-                                <a class="app-nav__link app-nav__link--back-link js-drawer-close" href="${node/getURL}" i18n:translate="">
+                                <a class="app-nav__link app-nav__link--back-link js-drawer-close" href="${node/getURL}">
                                     <span class="app-nav__tab--action">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 36 36">
-                                            q<polygon fill-rule="evenodd" points="21.293 9.293 22.707 10.707 15.414 18 22.707 25.293 21.293 26.707 12.586 18"/>
+                                            <polygon fill-rule="evenodd" points="21.293 9.293 22.707 10.707 15.414 18 22.707 25.293 21.293 26.707 12.586 18"/>
                                         </svg>
                                     </span>
-                                    <span class="app-nav__tab app-nav__tab--hide-text">
+                                    <span class="app-nav__tab app-nav__tab--hide-text" i18n:translate="">
                                         Back
                                     </span>
 

@@ -29,6 +29,14 @@
             permission="cmf.ManagePortal"
     />
 
+    <browser:page
+            name="ade25-base-settings-cc"
+            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+            class=".controlpanel.Ade25BaseSettingsCookieConsent"
+            template="settings-cc.pt"
+            permission="cmf.ManagePortal"
+    />
+
     <!-- Site navigation -->
     <browser:viewlet
             name="site-navigation-viewlet"
@@ -36,6 +44,17 @@
             for="*"
             class=".navigation.SiteNavigationViewlet"
             template="navigation.pt"
+            permission="zope2.View"
+            layer="..interfaces.IAde25BaseLayer"
+    />
+
+    <!-- Cookie Consent -->
+    <browser:viewlet
+            name="cookie-consent-viewlet"
+            manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+            for="*"
+            class=".cookieconsent.CookieConsentViewlet"
+            template="cookieconsent.pt"
             permission="zope2.View"
             layer="..interfaces.IAde25BaseLayer"
     />
