@@ -1,10 +1,11 @@
 # --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
 # SOME DESCRIPTIVE TITLE.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-04-26 16:03+0000\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-04-26 18:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,180 +17,179 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ade25.base\n"
+"X-Generator: Poedit 2.0.7\n"
 
-#: ./../browser/controlpanel.py:127
+#: ../browser/controlpanel.py:127
 msgid "Activate cookie consent message viewlet"
 msgstr ""
 
-#: ./../browser/controlpanel.py:96
+#: ../browser/controlpanel.py:96
 msgid "Activate low quality image placeholder (LQIP) generation in responsive image tool."
 msgstr ""
 
-#: ./../browser/controlpanel.py:152
+#: ../browser/controlpanel.py:152
 msgid "Activate to use the custom text fields available below.Otherwise the default cookie consent message will be automatically rendered which will be appropriate for most sites. The standard cookie message assumes a page to be available under the URI ${PORTAL_URL}/datenschutz."
 msgstr ""
 
-#: ./../browser/controlpanel.py:183
+#: ../browser/controlpanel.py:183
 msgid "Add custom dismiss button text"
 msgstr ""
 
-#: ./../configure.zcml:25
+#: ../configure.zcml:25
 msgid "Ade25 Base"
 msgstr ""
 
-#: ./../browser/settings-cc.pt:20
+#: ../browser/settings-cc.pt:20
 msgid "Ade25 Cookie Consent"
 msgstr ""
 
-#: ./../browser/settings-images.pt:20
+#: ../browser/settings-images.pt:20
 msgid "Ade25 Responsive Images"
 msgstr ""
 
-#: ./../browser/settings-cc.pt:31
-#: ./../browser/settings-images.pt:32
-#: ./../browser/settings-navigation.pt:32
+#: ../browser/settings-cc.pt:31 ../browser/settings-images.pt:32
+#: ../browser/settings-navigation.pt:32
 msgid "Ade25 Settings Overview"
 msgstr ""
 
-#: ./../browser/settings.pt:19
+#: ../browser/settings.pt:19
 msgid "Ade25 Site Settings"
 msgstr ""
 
-#: ./../browser/settings-navigation.pt:20
+#: ../browser/settings-navigation.pt:20
 msgid "Ade25 Site Settings - Navigation"
 msgstr ""
 
-#: ./../browser/controlpanel.py:102
+#: ../browser/controlpanel.py:102
 msgid "Available Responsive Image Scales"
 msgstr ""
 
-#: ./../browser/navigation.pt:58
+#: ../browser/navigation.pt:58
 msgid "Back"
 msgstr ""
 
-#: ./../utils.py:49
+#: ../utils.py:49
 msgid "Bottom"
 msgstr ""
 
-#: ./../browser/controlpanel.py:146
+#: ../browser/controlpanel.py:146
 msgid "CC Background Color"
 msgstr ""
 
-#: ./../browser/controlpanel.py:182
+#: ../browser/controlpanel.py:182
 msgid "CC Dismiss button"
 msgstr ""
 
-#: ./../browser/controlpanel.py:169
+#: ../browser/controlpanel.py:169
 msgid "CC Learn more link text"
 msgstr ""
 
-#: ./../browser/controlpanel.py:175
+#: ../browser/controlpanel.py:175
 msgid "CC Link Target"
 msgstr ""
 
-#: ./../browser/controlpanel.py:162
+#: ../browser/controlpanel.py:162
 msgid "CC Message"
 msgstr ""
 
-#: ./../browser/controlpanel.py:132
+#: ../browser/controlpanel.py:132
 msgid "CC Popover Position"
 msgstr ""
 
-#: ./../browser/controlpanel.py:140
+#: ../browser/controlpanel.py:140
 msgid "CC Text Color"
 msgstr ""
 
-#: ./../browser/controlpanel.py:64
+#: ../browser/controlpanel.py:64
 msgid "Choose if the main navigation should include a home link pointing at the front page."
 msgstr ""
 
-#: ./../browser/settings.pt:44
+#: ../browser/settings.pt:44
 msgid "Configure"
 msgstr ""
 
-#: ./../browser/controlpanel.py:126
+#: ../browser/controlpanel.py:126
 msgid "Enable Cookie Consent"
 msgstr ""
 
-#: ./../browser/controlpanel.py:63
+#: ../browser/controlpanel.py:63
 msgid "Enable Home Link"
 msgstr ""
 
-#: ./../browser/controlpanel.py:95
+#: ../browser/controlpanel.py:95
 msgid "Enable LQIP Support"
 msgstr ""
 
-#: ./../browser/controlpanel.py:163
+#: ../browser/controlpanel.py:163
 msgid "Enter custom cookie consent message"
 msgstr ""
 
-#: ./../browser/controlpanel.py:170
+#: ../browser/controlpanel.py:170
 msgid "Enter custom link text for privacy notice"
 msgstr ""
 
-#: ./../browser/controlpanel.py:176
+#: ../browser/controlpanel.py:176
 msgid "Enter relative location of privacy and data protection notice page"
 msgstr ""
 
-#: ./../configure.zcml:25
+#: ../configure.zcml:25
 msgid "Global utilities and tools (Mailer, Responsive Image Support and Navigation)"
 msgstr ""
 
-#: ./../browser/controlpanel.py:104
+#: ../browser/controlpanel.py:104
 msgid "JSON image scale definition"
 msgstr ""
 
-#: ./../browser/controlpanel.py:71
+#: ../browser/controlpanel.py:71
 msgid "Listed Content Types"
 msgstr ""
 
-#: ./../browser/controlpanel.py:184
+#: ../browser/controlpanel.py:184
 msgid "Ok"
 msgstr ""
 
-#: ./../browser/controlpanel.py:151
+#: ../browser/controlpanel.py:151
 msgid "Override Standard Cookie Consent Text"
 msgstr ""
 
-#: ./../browser/controlpanel.py:133
+#: ../browser/controlpanel.py:133
 msgid "Please select where to display the cookie consent pop over banner"
 msgstr ""
 
-#: ./../browser/controlpanel.py:56
+#: ../browser/controlpanel.py:56
 msgid "Setup initialized."
 msgstr ""
 
-#: ./../browser/controlpanel.py:141
+#: ../browser/controlpanel.py:141
 msgid "The entered text color will be used as background color for the popover button"
 msgstr ""
 
-#: ./../browser/controlpanel.py:147
+#: ../browser/controlpanel.py:147
 msgid "The entered value will be used as button text color."
 msgstr ""
 
-#: ./../browser/controlpanel.py:164
+#: ../browser/controlpanel.py:164
 msgid "This website uses cookies to ensure you get the best experience on our website. Learn more by visiting our "
 msgstr ""
 
-#: ./../utils.py:48
+#: ../utils.py:48
 msgid "Top"
 msgstr ""
 
-#: ./../configure.zcml:33
+#: ../configure.zcml:33
 msgid "Uninstall Ade25 global tools and utilities"
 msgstr ""
 
-#: ./../configure.zcml:33
+#: ../configure.zcml:33
 msgid "Uninstall ade25 global tools (ade25.base)"
 msgstr ""
 
-#: ./../browser/controlpanel.py:171
+#: ../browser/controlpanel.py:171
 msgid "data protection policy."
 msgstr ""
 
 #. Default: "Up to Site Setup"
-#: ./../browser/settings-cc.pt:26
-#: ./../browser/settings-images.pt:27
-#: ./../browser/settings-navigation.pt:27
+#: ../browser/settings-cc.pt:26 ../browser/settings-images.pt:27
+#: ../browser/settings-navigation.pt:27
 msgid "label_up_to_plone_setup"
 msgstr ""
