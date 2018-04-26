@@ -65,6 +65,14 @@ class CookieConsentViewlet(ViewletBase):
             settings['message'] = fallback['message']
             settings['link_text'] = fallback['link_text']
             settings['dismiss_text'] = fallback['dismiss_text']
-            settings['link_target'] = context.absolute_url()
+            link_path_segment = settings['link_target']
+            settings['link_target'] = '{0}{1}'.format(
+                context.absolute_url(),
+                link_path_segment
+            )
+        if not settings['color']:
+            settings['color'] = '#545454'
+        if not settings['color_bg']:
+            settings['color_bg'] = '#fff'
         return settings
 
