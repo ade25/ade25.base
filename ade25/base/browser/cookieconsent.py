@@ -4,6 +4,8 @@ from Acquisition import aq_inner
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
 
+from ade25.base import MessageFactory as _
+
 
 class CookieConsentViewlet(ViewletBase):
     """ Context aware responsive navigation viewlet """
@@ -43,6 +45,7 @@ class CookieConsentViewlet(ViewletBase):
                 api.portal.get_current_language()
             ),
         }
+        import pdb; pdb.set_trace()
         return messages
 
     def _get_registry_settings(self):
@@ -76,3 +79,15 @@ class CookieConsentViewlet(ViewletBase):
             settings['color_bg'] = '#fff'
         return settings
 
+    @staticmethod
+    def _translated_messages():
+        messages = [
+            _(u"In order to optimize our website for you and to be "
+             u"able to continuously improve it, we use cookies. By "
+             u"continuing to use the website, you agree to the use of "
+             u"cookies. Further information on cookies can be found "
+             u"in our"),
+            _(u"privacy policy"),
+            _(u"I understand")
+        ]
+        return messages

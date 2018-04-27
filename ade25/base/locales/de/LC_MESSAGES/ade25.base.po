@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-04-26 16:03+0000\n"
-"PO-Revision-Date: 2018-04-26 18:08+0200\n"
+"POT-Creation-Date: 2018-04-27 14:25+0000\n"
+"PO-Revision-Date: 2018-04-27 16:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: Kreativkombinat GbR Language Team\n"
 "MIME-Version: 1.0\n"
@@ -136,6 +136,14 @@ msgstr "Tragen Sie hier den relativen Pfad zur Seite mit Hinweisen zum Datenschu
 msgid "Global utilities and tools (Mailer, Responsive Image Support and Navigation)"
 msgstr "Globale Hilfen und Werkzeuge (Mailer, Responsive Image Support, Cookie Hinweis und Responsive Navigation)"
 
+#: ../browser/cookieconsent.py:91
+msgid "I understand"
+msgstr "Ich habe verstanden"
+
+#: ../browser/cookieconsent.py:85
+msgid "In order to optimize our website for you and to be able to continuously improve it, we use cookies. By continuing to use the website, you agree to the use of cookies. Further information on cookies can be found in our"
+msgstr "Um unsere Webseite für Sie optimal zu gestalten und fortlaufend verbessern zu können, verwenden wir Cookies. Durch die weitere Nutzung der Webseite stimmen Sie der Verwendung von Cookies zu. Weitere Informationen zu Cookies erhalten Sie in unserer"
+
 #: ../browser/controlpanel.py:104
 msgid "JSON image scale definition"
 msgstr "Definition Bildstil (JSON Format)"
@@ -193,3 +201,7 @@ msgstr "unsere Datenschutzhinweise."
 #: ../browser/settings-navigation.pt:27
 msgid "label_up_to_plone_setup"
 msgstr "Konfiguration"
+
+#: ../browser/cookieconsent.py:90
+msgid "privacy policy"
+msgstr "Datenschutzerklärung"
