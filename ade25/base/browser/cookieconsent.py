@@ -45,7 +45,6 @@ class CookieConsentViewlet(ViewletBase):
                 api.portal.get_current_language()
             ),
         }
-        import pdb; pdb.set_trace()
         return messages
 
     def _get_registry_settings(self):
