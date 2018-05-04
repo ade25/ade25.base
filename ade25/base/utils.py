@@ -4,6 +4,11 @@ import os
 import json
 from string import Template
 
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
+
+from ade25.base import MessageFactory as _
+
 
 def get_filesystem_template(name, data=dict()):
     template_file = os.path.join(
@@ -36,3 +41,11 @@ def default_image_scales():
         except ValueError:
             pass
     return image_scales
+
+
+def available_cc_positions():
+    position_choices = SimpleVocabulary(
+        [SimpleTerm(value=u'top', title=_(u'Top')),
+         SimpleTerm(value=u'bottom', title=_(u'Bottom'))]
+    )
+    return position_choices

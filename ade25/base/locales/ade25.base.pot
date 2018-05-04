@@ -1,0 +1,207 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2018-04-27 14:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: ade25.base\n"
+
+#: ./../browser/controlpanel.py:127
+msgid "Activate cookie consent message viewlet"
+msgstr ""
+
+#: ./../browser/controlpanel.py:96
+msgid "Activate low quality image placeholder (LQIP) generation in responsive image tool."
+msgstr ""
+
+#: ./../browser/controlpanel.py:152
+msgid "Activate to use the custom text fields available below.Otherwise the default cookie consent message will be automatically rendered which will be appropriate for most sites. The standard cookie message assumes a page to be available under the URI ${PORTAL_URL}/datenschutz."
+msgstr ""
+
+#: ./../browser/controlpanel.py:183
+msgid "Add custom dismiss button text"
+msgstr ""
+
+#: ./../configure.zcml:25
+msgid "Ade25 Base"
+msgstr ""
+
+#: ./../browser/settings-cc.pt:20
+msgid "Ade25 Cookie Consent"
+msgstr ""
+
+#: ./../browser/settings-images.pt:20
+msgid "Ade25 Responsive Images"
+msgstr ""
+
+#: ./../browser/settings-cc.pt:31
+#: ./../browser/settings-images.pt:32
+#: ./../browser/settings-navigation.pt:32
+msgid "Ade25 Settings Overview"
+msgstr ""
+
+#: ./../browser/settings.pt:19
+msgid "Ade25 Site Settings"
+msgstr ""
+
+#: ./../browser/settings-navigation.pt:20
+msgid "Ade25 Site Settings - Navigation"
+msgstr ""
+
+#: ./../browser/controlpanel.py:102
+msgid "Available Responsive Image Scales"
+msgstr ""
+
+#: ./../browser/navigation.pt:58
+msgid "Back"
+msgstr ""
+
+#: ./../utils.py:49
+msgid "Bottom"
+msgstr ""
+
+#: ./../browser/controlpanel.py:146
+msgid "CC Background Color"
+msgstr ""
+
+#: ./../browser/controlpanel.py:182
+msgid "CC Dismiss button"
+msgstr ""
+
+#: ./../browser/controlpanel.py:169
+msgid "CC Learn more link text"
+msgstr ""
+
+#: ./../browser/controlpanel.py:175
+msgid "CC Link Target"
+msgstr ""
+
+#: ./../browser/controlpanel.py:162
+msgid "CC Message"
+msgstr ""
+
+#: ./../browser/controlpanel.py:132
+msgid "CC Popover Position"
+msgstr ""
+
+#: ./../browser/controlpanel.py:140
+msgid "CC Text Color"
+msgstr ""
+
+#: ./../browser/controlpanel.py:64
+msgid "Choose if the main navigation should include a home link pointing at the front page."
+msgstr ""
+
+#: ./../browser/settings.pt:44
+msgid "Configure"
+msgstr ""
+
+#: ./../browser/controlpanel.py:126
+msgid "Enable Cookie Consent"
+msgstr ""
+
+#: ./../browser/controlpanel.py:63
+msgid "Enable Home Link"
+msgstr ""
+
+#: ./../browser/controlpanel.py:95
+msgid "Enable LQIP Support"
+msgstr ""
+
+#: ./../browser/controlpanel.py:163
+msgid "Enter custom cookie consent message"
+msgstr ""
+
+#: ./../browser/controlpanel.py:170
+msgid "Enter custom link text for privacy notice"
+msgstr ""
+
+#: ./../browser/controlpanel.py:176
+msgid "Enter relative location of privacy and data protection notice page"
+msgstr ""
+
+#: ./../configure.zcml:25
+msgid "Global utilities and tools (Mailer, Responsive Image Support and Navigation)"
+msgstr ""
+
+#: ./../browser/cookieconsent.py:91
+msgid "I understand"
+msgstr ""
+
+#: ./../browser/cookieconsent.py:85
+msgid "In order to optimize our website for you and to be able to continuously improve it, we use cookies. By continuing to use the website, you agree to the use of cookies. Further information on cookies can be found in our"
+msgstr ""
+
+#: ./../browser/controlpanel.py:104
+msgid "JSON image scale definition"
+msgstr ""
+
+#: ./../browser/controlpanel.py:71
+msgid "Listed Content Types"
+msgstr ""
+
+#: ./../browser/controlpanel.py:184
+msgid "Ok"
+msgstr ""
+
+#: ./../browser/controlpanel.py:151
+msgid "Override Standard Cookie Consent Text"
+msgstr ""
+
+#: ./../browser/controlpanel.py:133
+msgid "Please select where to display the cookie consent pop over banner"
+msgstr ""
+
+#: ./../browser/controlpanel.py:56
+msgid "Setup initialized."
+msgstr ""
+
+#: ./../browser/controlpanel.py:141
+msgid "The entered text color will be used as background color for the popover button"
+msgstr ""
+
+#: ./../browser/controlpanel.py:147
+msgid "The entered value will be used as button text color."
+msgstr ""
+
+#: ./../browser/controlpanel.py:164
+msgid "This website uses cookies to ensure you get the best experience on our website. Learn more by visiting our "
+msgstr ""
+
+#: ./../utils.py:48
+msgid "Top"
+msgstr ""
+
+#: ./../configure.zcml:33
+msgid "Uninstall Ade25 global tools and utilities"
+msgstr ""
+
+#: ./../configure.zcml:33
+msgid "Uninstall ade25 global tools (ade25.base)"
+msgstr ""
+
+#: ./../browser/controlpanel.py:171
+msgid "data protection policy."
+msgstr ""
+
+#. Default: "Up to Site Setup"
+#: ./../browser/settings-cc.pt:26
+#: ./../browser/settings-images.pt:27
+#: ./../browser/settings-navigation.pt:27
+msgid "label_up_to_plone_setup"
+msgstr ""
+
+#: ./../browser/cookieconsent.py:90
+msgid "privacy policy"
+msgstr ""
