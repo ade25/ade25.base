@@ -2,6 +2,7 @@
 """Module providing cookie consent viewlet"""
 from Acquisition import aq_inner
 from plone import api
+from plone.api.exc import InvalidParameterError
 from plone.app.layout.viewlets import ViewletBase
 
 from ade25.base import MessageFactory as _
@@ -12,9 +13,12 @@ class CookieConsentViewlet(ViewletBase):
 
     @staticmethod
     def enabled():
-        enabled = api.portal.get_registry_record(
-            name='ade25.base.cc_enabled'
-        )
+        try:
+            enabled = api.portal.get_registry_record(
+                name='ade25.base.cc_enabled'
+            )
+        except InvalidParameterError:
+            enabled = False
         if enabled:
             return enabled
         return False
