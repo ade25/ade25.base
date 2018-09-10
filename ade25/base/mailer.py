@@ -109,8 +109,8 @@ def get_mail_from_address():
     return mfrom
 
 
-def get_mail_template(name, data=dict()):
-    template_file = os.path.join(os.path.dirname(__file__), name)
+def get_mail_template(name, path, data=dict()):
+    template_file = os.path.join(path, name)
     template = Template(open(template_file).read())
     composed = template.substitute(data)
     return composed
