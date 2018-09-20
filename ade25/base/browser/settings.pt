@@ -15,7 +15,6 @@
     </div>
 
     <div class="app-page--control-panel configlet">
-        <
         <div class="app-page__header">
             <h1 class="app-page__title app-page__title--primary" i18n:translate="">
                 Ade25 Site Settings
@@ -29,8 +28,6 @@
                      i18n:translate="label_up_to_plone_setup">
                 Up to Site Setup
             </a>
-
-
         </div>
 
         <div class="app-page__main">
@@ -64,8 +61,20 @@
                         </a>
                     </div>
                 </div>
+                <div class="app-control-panel">
+                    <h3 class="app-control-panel__title">
+                        Cookie Consent
+                    </h3>
+                    <p>Configure cookie consent message</p>
+                    <div class="app-control-panel_-action">
+                        <a class="app-button app-button--default link-parent"
+                                 tal:attributes="href string:${portal_url}/@@ade25-base-settings-cc"
+                                 i18n:translate="">
+                            Configure
+                        </a>
+                    </div>
+                </div>
             </div>
-            <p>Settings will be linked here</p>
         </div>
 
     </div>

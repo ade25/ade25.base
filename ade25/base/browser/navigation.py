@@ -13,12 +13,18 @@ class SiteNavigationViewlet(ViewletBase):
 
     @staticmethod
     def section_types():
+        section_types = list()
         settings = api.portal.get_registry_record(
             name='ade25.base.listed_content_types'
         )
         if settings:
-            return settings
-        return ['Folder', ]
+            section_types = settings
+        return section_types
+
+    def available(self):
+        if self.section_types():
+            return True
+        return False
 
     def build_nav_tree(self, root, query):
         """
