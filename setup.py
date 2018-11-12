@@ -33,10 +33,9 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
-        'plone.app.dexterity [grok, relations]',
+        'plone.app.dexterity [relations]',
         'plone.app.relationfield',
         'plone.namedfile [blobs]',
-        'plone.formwidget.contenttree',
     ],
     extras_require={
         'test': [
