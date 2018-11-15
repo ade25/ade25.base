@@ -10,9 +10,9 @@ from zope.schema.vocabulary import SimpleVocabulary
 from ade25.base import MessageFactory as _
 
 
-def get_filesystem_template(name, data=dict()):
+def get_filesystem_template(name, path, data=dict()):
     template_file = os.path.join(
-        os.path.dirname(__file__),
+        path,
         'templates',
         name
     )
@@ -34,7 +34,10 @@ def default_image_scales():
     image_scales = list()
     for scale_name in available_scales:
         scale_info_template = 'image-sizes-{0}.json'.format(scale_name)
-        scale_info = get_filesystem_template(scale_info_template)
+        scale_info = get_filesystem_template(
+            scale_info_template,
+            os.path.dirname(__file__)
+        )
         try:
             scale_info_json = json.loads(scale_info)
             image_scales.append(json.dumps(scale_info_json))
