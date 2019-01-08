@@ -29,6 +29,7 @@ class ResponsiveImage(BrowserView):
                  image_field_name='image',
                  caption_field_name='caption',
                  scale='default',
+                 aspect_ratio='1',
                  lqip=True,
                  lazy_load=True,
                  *args,
@@ -37,6 +38,7 @@ class ResponsiveImage(BrowserView):
             'image_field_name': image_field_name,
             'caption_field_name': caption_field_name,
             'scale': scale,
+            'aspect_ratio': aspect_ratio,
             'lqip': lqip,
             'lazy_load': lazy_load,
             'uuid': self.context.UID()

@@ -1,7 +1,8 @@
 <tal:image tal:define="options view/options; image_field_name options/image_field_name; image_data python:view.get_image_data()">
-    <figure class="app-page__figure">
-        <div class="app-figure">
-            <img class="app-figure__content lazy-load image--lazy-load"
+    <figure class="o-figure">
+        <div class="o-figure__card" style="--aspect-ratio:1;"
+            tal:attributes="style python:'--aspect-ratio:' + options['aspect_ratio']">
+            <img class="o-figure__content o-image o-image--lazy-loaded lazy-load image--lazy-load"
                  src="${image_data/lqip}"
                  data-src="${image_data/origin}"
                  data-sizes="auto"
