@@ -85,14 +85,17 @@ class ResponsiveImagesTool(object):
         }
         if hasattr(item, caption_field):
             image_caption = getattr(item, caption_field, None)
-            transforms = api.portal.get_tool('portal_transforms')
-            image_caption_data = transforms.convertTo(
-                'text/x-html-safe',
-                image_caption,
-                mimetype='text/html',
-                context=item
-            )
-            data['caption'] = image_caption_data.getData()
+            if image_caption:
+                transforms = api.portal.get_tool('portal_transforms')
+                image_caption_data = transforms.convertTo(
+                    'text/x-html-safe',
+                    image_caption,
+                    mimetype='text/html',
+                    context=item
+                )
+                data['caption'] = image_caption_data.getData()
+            else:
+                data['caption'] = None
         if hasattr(item, image_field):
             srcset = list()
             stored_image = getattr(item, image_field)
