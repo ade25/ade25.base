@@ -32,6 +32,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'babel',
         'setuptools',
         'plone.app.dexterity [relations]',
         'plone.app.relationfield',

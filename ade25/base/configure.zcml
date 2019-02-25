@@ -44,4 +44,10 @@
         factory="ade25.base.imagetool.ResponsiveImagesTool"
     />
 
+    <adapter
+            for="Products.CMFCore.interfaces.IContentish"
+            provides="ade25.base.interfaces.IContentInfoProvider"
+            factory=".content_info.ContentInfoProvider"
+    />
+
 </configure>

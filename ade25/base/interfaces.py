@@ -29,3 +29,16 @@ class IResponsiveImageTool(Interface):
         @param lqip:            opt out from low quality image placeholder
                                 support (default: True)
         """
+
+
+class IContentInfoProvider(Interface):
+
+    def reading_time(self):
+        """ Get estimated reading time.
+        @return: a time value in minutes
+        """
+
+    def time_stamp(self):
+        """ Get content time stamp.
+        @return: a multipurpose time representation
+        """
