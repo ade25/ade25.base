@@ -68,3 +68,17 @@ class ContentInfoProvider(object):
                 stream_data, characters, content_ellipsis
             )
             return cropped_text
+
+    def teaser_text(self, text, characters=320, content_ellipsis='[...]'):
+        context = aq_inner(self.context)
+        if text:
+            portal_transforms = api.portal.get_tool(name="portal_transforms")
+            # Output here is a single <p> which contains <br /> for newline
+            stream = portal_transforms.convertTo(
+                "text/plain", text, mimetype="text/html"
+            )
+            stream_data = stream.getData().strip()
+            cropped_text = context.restrictedTraverse('@@plone').cropText(
+                stream_data, characters, content_ellipsis
+            )
+            return cropped_text

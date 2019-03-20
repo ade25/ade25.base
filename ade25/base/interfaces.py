@@ -38,7 +38,7 @@ class IContentInfoProvider(Interface):
         @return: a time value in minutes
         """
 
-    def time_stamp(self):
+    def time_stamp(self, date_time):
         """ Get content time stamp.
         @return: a multipurpose time representation
         """
