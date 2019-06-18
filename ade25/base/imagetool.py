@@ -4,9 +4,6 @@ import json
 import six
 
 from plone import api
-from plone.app.contentlisting.interfaces import IContentListingObject
-from plone.scale import scale as image_scaler
-from Products.ZCatalog.interfaces import ICatalogBrain
 from plone.scale.interfaces import IScaledImageQuality
 from zope.component import getMultiAdapter, queryUtility
 from zope.globalrequest import getRequest
