@@ -50,6 +50,12 @@ class ResponsiveImage(BrowserView):
     def render(self):
         return self.index()
 
+    def custom_css_class(self):
+        css_class = 'o-figure{}'.format(
+            ' ' + self.options.get('css_class', 'o-figure--default')
+        )
+        return css_class
+
     def get_image_data(self):
         context = aq_inner(self.context)
         uuid = context.UID()
