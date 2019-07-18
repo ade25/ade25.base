@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 """Module providing embeddable responsive images"""
+import json
+
 from Acquisition import aq_inner
 from Products.Five import BrowserView
+from ade25.base.utils import get_filesystem_template
+from plone import api
 from zope.component import getUtility
 
 from ade25.base.interfaces import IResponsiveImageTool
@@ -64,3 +68,28 @@ class ResponsiveImage(BrowserView):
             self.options
         )
         return image
+
+    def aspect_ratio(self):
+        aspect_ratio = ''
+        scales = self.get_scale_information()
+        media_query = '@media (min-width: {width}){{{base}{ratio}}}'
+        css_var = "--aspect-ratio:"
+        for scale in scales:
+            aspect_ratio_item = media_query.format(
+                width=scale['width'],
+                base=css_var,
+                ratio='{0}/{1}'.format(scale['width'], scale['height'])
+            )
+            aspect_ratio = '{0} {1}'.format(aspect_ratio, aspect_ratio_item)
+        return aspect_ratio
+
+    def get_scale_information(self):
+        registry_settings = api.portal.get_registry_record(
+            'ade25.base.responsive_image_scales'
+        )
+        registry_set = next((d for i, d in enumerate(registry_settings)
+                             if self.options['scale'] in d), None)
+        if registry_set:
+            scale_sizes = json.loads(registry_set)
+            sizes = scale_sizes[self.options['scale']]
+            return sizes

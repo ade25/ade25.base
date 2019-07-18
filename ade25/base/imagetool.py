@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Module providing an image scaling factory."""
+import os
 import json
 import six
 
@@ -47,7 +48,10 @@ class ResponsiveImagesTool(object):
 
     @staticmethod
     def get_default_scale_info():
-        scale_info = get_filesystem_template('image-sizes-default.json')
+        scale_info = get_filesystem_template(
+            'image-sizes-default.json',
+            os.path.dirname(__file__)
+        )
         try:
             info = json.loads(scale_info)
         except ValueError:
