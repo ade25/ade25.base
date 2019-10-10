@@ -14,29 +14,33 @@
         Portal status message
     </div>
 
-    <div class="app-page--control-panel configlet">
-        <div class="app-page__header">
-            <h1 class="app-page__title app-page__title--primary" i18n:translate="">
+    <div class="o-page--control-panel configlet">
+        <div class="o-page__header">
+            <h1 class="o-page__title o-page__title--primary" i18n:translate="">
                 Ade25 Site Settings
             </h1>
-            <p class="app-page__abstract">
+            <p class="o-page__abstract">
                 Configure basic site functionality like the provided responsive image and
                 navigation support.
             </p>
-            <a id="setup-link" class="app-button app-button--default link-parent"
+            <a id="setup-link" class="c-button c-button--default link-parent"
                      tal:attributes="href string:${portal_url}/@@overview-controlpanel"
                      i18n:translate="label_up_to_plone_setup">
                 Up to Site Setup
             </a>
         </div>
 
-        <div class="app-page__main">
-            <h2 class="app-page__title app-page__title--secondary">
-                Control panels
-            </h2>
+        <div class="o-page__main">
+            <div class="c-page__header">
+                <div class="c-page-header__title">
+                    <h2 class="c-page-header__headline" i18n:translate="">
+                        Control panels
+                    </h2>
+                </div>
+            </div>
             <div class="app-control-panels">
-                <div class="app-control-panel">
-                    <h3 class="app-control-panel__title">
+                <div class="o-page__section app-control-panel">
+                    <h3 class="app-control-panel__title" i18n:translate="">
                         Site navigation
                     </h3>
                     <p>Configure responsive navigation behavior like e.g. types that should show up</p>
@@ -48,8 +52,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="app-control-panel">
-                    <h3 class="app-control-panel__title">
+                <div class="o-page__section app-control-panel">
+                    <h3 class="app-control-panel__title" i18n:translate="">
                         Responsive Images
                     </h3>
                     <p>Update handling of responsive images</p>
@@ -61,8 +65,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="app-control-panel">
-                    <h3 class="app-control-panel__title">
+                <div class="o-page__section app-control-panel">
+                    <h3 class="app-control-panel__title" i18n:translate="">
                         Cookie Consent
                     </h3>
                     <p>Configure cookie consent message</p>

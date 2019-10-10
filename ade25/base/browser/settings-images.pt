@@ -14,33 +14,41 @@
         Portal status message
     </div>
 
-    <div class="app-control-panel configlet">
-<
-        <div class="app-page__header">
-            <h1 class="app-page__title app-page__title--primary" i18n:translate="">
-                Ade25 Responsive Images
-            </h1>
-            <p class="app-page__abstract">
-                Configure basic site functionality like the provided responsive image and
-                navigation support.
-            </p>
-            <a id="setup-link" class="app-button app-button--primary link-parent"
-                     tal:attributes="href string:${portal_url}/@@overview-controlpanel"
-                     i18n:translate="label_up_to_plone_setup">
-                Up to Site Setup
-            </a>
-            <a id="setup-link" class="app-button app-button--default link-parent"
-                     tal:attributes="href string:${portal_url}/@@ade25-base-controlpanel"
-                     i18n:translate="">
-                Ade25 Settings Overview
-            </a>
-        </div>
+    <div class="o-page--control-panel configlet">
 
-        <div class="app-page__main">
-            <div class="app-page__header">
-                <h2>Settings</h2>
+        <header class="o-page__header">
+            <div class="o-page__section c-page-header">
+                <div class="c-page-header__title">
+                    <h1 class="c-page-header__headline" i18n:translate="">
+                        Ade25 Responsive Images
+                    </h1>
+                </div>
+                <p class="c-page-header__abstract">
+                    Configure basic site functionality like the provided responsive image and
+                    navigation support.
+                </p>
+                <a id="setup-link" class="c-button c-button--primary link-parent"
+                         tal:attributes="href string:${portal_url}/@@overview-controlpanel"
+                         i18n:translate="label_up_to_plone_setup">
+                    Up to Site Setup
+                </a>
+                <a id="setup-link" class="c-button c-button--default link-parent"
+                         tal:attributes="href string:${portal_url}/@@ade25-base-controlpanel"
+                         i18n:translate="">
+                    Ade25 Settings Overview
+                </a>
             </div>
-            <div class="app-page__section" id="layout-contents">
+        </header>
+
+        <div class="o-page__main">
+            <div class="c-page__header">
+                <div class="c-page-header__title">
+                    <h2 class="c-page-header__headline" i18n:translate="">
+                        Settings
+                    </h2>
+                </div>
+            </div>
+            <div class="o-page__section" id="layout-contents">
                 <span tal:replace="structure view/contents" />
             </div>
         </div>
