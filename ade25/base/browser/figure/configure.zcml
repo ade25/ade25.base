@@ -1,0 +1,27 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser"
+        xmlns:z3c="http://namespaces.zope.org/z3c"
+        i18n_domain="ade25.base">
+
+    <!-- Responsive image -->
+    <browser:page
+            for="Products.CMFCore.interfaces.IContentish"
+            name="figure"
+            class="ade25.base.browser.figure.figure.ResponsiveImage"
+            template="figure.pt"
+            permission="zope2.View"
+            layer="ade25.base.interfaces.IAde25BaseLayer"
+    />
+
+    <!-- Responsive image -->
+    <browser:page
+            for="Products.CMFCore.interfaces.IContentish"
+            name="figure-preview"
+            class="ade25.base.browser.figure.figure.ResponsiveImagePreview"
+            template="figure-preview.pt"
+            permission="zope2.View"
+            layer="ade25.base.interfaces.IAde25BaseLayer"
+    />
+
+</configure>

@@ -1,0 +1,19 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser"
+        xmlns:z3c="http://namespaces.zope.org/z3c"
+        i18n_domain="ade25.base">
+
+
+    <!-- Cookie Consent -->
+    <browser:viewlet
+            name="cookie-consent-viewlet"
+            manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+            for="*"
+            class="ade25.base.browser.cookieconsent.cookieconsent.CookieConsentViewlet"
+            template="cookieconsent.pt"
+            permission="zope2.View"
+            layer="ade25.base.interfaces.IAde25BaseLayer"
+    />
+
+</configure>

@@ -4,78 +4,17 @@
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="ade25.base">
 
-    <!-- Control panels -->
-    <browser:page
-            name="ade25-base-controlpanel"
-            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-            class=".controlpanel.Ade25BaseSettings"
-            permission="cmf.ManagePortal"
-            template="settings.pt"
-    />
-
-    <browser:page
-            name="ade25-base-settings-images"
-            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-            class=".controlpanel.Ade25BaseSettingsImages"
-            template="settings-images.pt"
-            permission="cmf.ManagePortal"
-    />
-
-    <browser:page
-            name="ade25-base-settings-navigation"
-            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-            class=".controlpanel.Ade25BaseSettingsNavigation"
-            template="settings-navigation.pt"
-            permission="cmf.ManagePortal"
-    />
-
-    <browser:page
-            name="ade25-base-settings-cc"
-            for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-            class=".controlpanel.Ade25BaseSettingsCookieConsent"
-            template="settings-cc.pt"
-            permission="cmf.ManagePortal"
-    />
+    <include package=".controlpanel" />
+    <include package=".cookieconsent" />
+    <include package=".figure" />
 
     <!-- Site navigation -->
     <browser:viewlet
             name="site-navigation-viewlet"
             manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
             for="*"
-            class=".navigation.SiteNavigationViewlet"
+            class="ade25.base.browser.navigation_bbb.SiteNavigationViewlet"
             template="navigation.pt"
-            permission="zope2.View"
-            layer="..interfaces.IAde25BaseLayer"
-    />
-
-    <!-- Cookie Consent -->
-    <browser:viewlet
-            name="cookie-consent-viewlet"
-            manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
-            for="*"
-            class=".cookieconsent.CookieConsentViewlet"
-            template="cookieconsent.pt"
-            permission="zope2.View"
-            layer="..interfaces.IAde25BaseLayer"
-    />
-
-
-    <!-- Responsive image -->
-    <browser:page
-            for="Products.CMFCore.interfaces.IContentish"
-            name="figure"
-            class=".figure.ResponsiveImage"
-            template="figure.pt"
-            permission="zope2.View"
-            layer="..interfaces.IAde25BaseLayer"
-    />
-
-    <!-- Responsive image -->
-    <browser:page
-            for="Products.CMFCore.interfaces.IContentish"
-            name="figure-preview"
-            class=".figure.ResponsiveImagePreview"
-            template="figure-preview.pt"
             permission="zope2.View"
             layer="..interfaces.IAde25BaseLayer"
     />

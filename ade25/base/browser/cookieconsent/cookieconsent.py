@@ -4,12 +4,15 @@ from Acquisition import aq_inner
 from plone import api
 from plone.api.exc import InvalidParameterError
 from plone.app.layout.viewlets import ViewletBase
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from ade25.base import MessageFactory as _
 
 
 class CookieConsentViewlet(ViewletBase):
     """ Context aware responsive navigation viewlet """
+
+    index = ViewPageTemplateFile('cookieconsent.pt')
 
     @staticmethod
     def enabled():
