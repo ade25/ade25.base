@@ -15,7 +15,7 @@
             </div>
             <div class="c-nav-bar__main" id="c-site-nav">
                 <ul class="c-nav" id="c-nav-list">
-                    <div tal:replace="structure provider:ade25.navtree" />
+                    <div tal:replace="structure provider:ade25base.navtree" />
                 </ul>
             </div>
         </nav>
