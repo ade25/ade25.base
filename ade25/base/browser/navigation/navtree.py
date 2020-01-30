@@ -135,6 +135,7 @@ class NavTreeProvider(ContentProviderBase):
                 'sub': sub,
                 'opener':  self._opener_markup_template.format(**item),
                 'aria_haspopup': ' aria-haspopup="true"',
+                'dropdown_toggle': ' js-dropdown-toggle',
                 'has_sub_class': ' c-nav__item--has-children',
                 'is_current': ' c-nav__item--current',
                 'js_class': ' js-dropdown-toggle'
@@ -144,6 +145,7 @@ class NavTreeProvider(ContentProviderBase):
                 'sub': sub,
                 'opener':  '',
                 'aria_haspopup': '',
+                'dropdown_toggle': '',
                 'has_sub_class': '',
                 'is_current': '',
                 'js_class': ''
