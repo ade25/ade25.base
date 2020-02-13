@@ -4,7 +4,7 @@ from collections import defaultdict
 
 from Products.CMFPlone import utils
 from Products.CMFPlone.interfaces import ILanguageSchema
-from ade25.base.browser.controlpanel import IAde25BaseControlPanelNavigation
+from ade25.base.browser.controlpanel.settings import IAde25BaseControlPanelNavigation
 from plone import api
 from plone.app.layout.navigation.root import getNavigationRoot
 from plone.i18n.normalizer import IIDNormalizer
@@ -44,7 +44,7 @@ class SitemapProvider(ContentProviderBase):
         registry = getUtility(IRegistry)
         settings = registry.forInterface(
             IAde25BaseControlPanelNavigation,
-            prefix='hph.base')
+            prefix='ade25.base')
         return settings
 
     @property

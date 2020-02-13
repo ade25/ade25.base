@@ -4,7 +4,7 @@
 
     <!-- Nav Tree Content Provider -->
     <adapter
-            factory=".navtree.NavTreeProvider"
+            factory="ade25.base.browser.navigation.navtree.NavTreeProvider"
             for="*
              *
              *"
@@ -24,11 +24,11 @@
 
     <!-- Nav Tree Content Provider -->
     <adapter
-            factory=".sitemap.SitemapProvider"
+            factory="ade25.base.browser.navigation.sitemap.SitemapProvider"
             for="*
              *
              *"
-            name="ade25.sitemap"
+            name="ade25base.sitemap"
             provides="zope.contentprovider.interfaces.IContentProvider"
     />
 

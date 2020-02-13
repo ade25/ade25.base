@@ -6,10 +6,11 @@ from plone.app.layout.navigation.root import getNavigationRoot
 from plone.i18n.normalizer import IIDNormalizer
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
+from plone.memoize.view import memoize_contextless
 from zope.contentprovider.provider import ContentProviderBase
 
 from ade25.base import config as ade25_config
-from ade25.base.browser.controlpanel import IAde25BaseControlPanelNavigation
+from ade25.base.browser.controlpanel.settings import IAde25BaseControlPanelNavigation
 
 
 class NavTreeProvider(ContentProviderBase):
@@ -18,7 +19,25 @@ class NavTreeProvider(ContentProviderBase):
     _nav_tree_path = None
     _nav_tree_context = None
 
+    _opener_markup_template = (
+        u'<span class="c-toc__link-item c-toc__link-item--icon">'  # noqa: E 501
+        u'{opener}'
+        u'</span>'
+    )
+
+    _item_markup_template = (
+        u'<li class="c-nav__item c-nav__item-{id}{has_sub_class}{is_current}">'
+        u'<a href="{url}" class="c-nav__link c-nav__link--default c-nav__link--state-{review_state}{dropdown_toggle}{js_class}"{aria_haspopup}><span class="c-nav__link-text">{title}</span>{opener}</a>'  # noqa: E 501
+        u'{sub}'
+        u'</li>'
+    )
+
+    _subtree_markup_wrapper = (
+        u'<ul class="c-nav c-nav--level-{0} c-nav__dropdown c-nav__dropdown--hidden has_subtree dropdown" aria-label="submenu">{out}</ul>'  # noqa: E 501
+    )
+
     @property
+    @memoize_contextless
     def settings(self):
         registry = getUtility(IRegistry)
         settings = registry.forInterface(
@@ -59,19 +78,19 @@ class NavTreeProvider(ContentProviderBase):
             return self._nav_tree
 
         types = api.portal.get_registry_record(
-            name='hph.base.listed_content_types'
+            name='ade25.base.listed_content_types'
         )
         lang_current = api.portal.get_current_language()
 
         query = {
             'path': {'query': self.nav_tree_path, 'depth': self.nav_tree_depth},
             'portal_type': {'query': types},
-            'exclude_from_nav': False,
+            'exclude_from_toc': False,
             'review_state': 'published',
             'Language': lang_current,
             'sort_on': 'getObjPositionInParent'
         }
-        res = api.content.find(**query)
+        brains = api.content.find(**query)
 
         ret = {}
 
@@ -81,7 +100,8 @@ class NavTreeProvider(ContentProviderBase):
             context_physical_path = context_physical_path[:-1]
         context_path = '/'.join(context_physical_path)
 
-        for it in res:
+        for it in brains:
+            brain_path = '/'.join(it.getPath().split('/'))
             is_current = False
             if context_path is not None:
                 # Determine if it's current object
@@ -90,8 +110,9 @@ class NavTreeProvider(ContentProviderBase):
             entry = {
                 'id': it.id,
                 'uid': it.UID,
+                'path': brain_path,
                 'url': it.getURL(),
-                'title': it.Title,
+                'title': utils.safe_unicode(it.Title),
                 'review_state': it.review_state,
                 'is_current': is_current
             }
@@ -103,7 +124,47 @@ class NavTreeProvider(ContentProviderBase):
         self._nav_tree = ret
         return ret
 
+    def render_item(self, item, iteration):
+        sub = self.build_tree(
+            item['path'],
+            first_run=False,
+            iteration=iteration+1
+        )
+        if sub:
+            item.update({
+                'sub': sub,
+                'opener':  self._opener_markup_template.format(**item),
+                'aria_haspopup': ' aria-haspopup="true"',
+                'dropdown_toggle': ' js-dropdown-toggle',
+                'has_sub_class': ' c-nav__item--has-children',
+                'is_current': ' c-nav__item--current',
+                'js_class': ' js-dropdown-toggle'
+            })
+        else:
+            item.update({
+                'sub': sub,
+                'opener':  '',
+                'aria_haspopup': '',
+                'dropdown_toggle': '',
+                'has_sub_class': '',
+                'is_current': '',
+                'js_class': ''
+            })
+        return self._item_markup_template.format(**item)
+
     def build_tree(self, path, first_run=True, iteration=0):
+        """Non-template based recursive tree building.
+        3-4 times faster than template based.
+        """
+        out = u''
+        for item in self.nav_tree.get(path, []):
+            out += self.render_item(item, iteration)
+
+        if not first_run and out:
+            out = self._subtree_markup_wrapper.format(out=out)
+        return out
+
+    def build_tree_deprecated(self, path, first_run=True, iteration=0):
         """Non-template based recursive tree building.
         3-4 times faster than template based.
         See figures below.
@@ -150,5 +211,4 @@ class NavTreeProvider(ContentProviderBase):
         return out
 
     def render(self):
-
         return self.build_tree(self.nav_tree_path)

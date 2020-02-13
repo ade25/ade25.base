@@ -7,9 +7,10 @@
     <include package=".controlpanel" />
     <include package=".cookieconsent" />
     <include package=".figure" />
+    <include package=".navigation" />
 
     <!-- Site navigation -->
-    <browser:viewlet
+    <!--<browser:viewlet
             name="site-navigation-viewlet"
             manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
             for="*"
@@ -17,6 +18,6 @@
             template="navigation.pt"
             permission="zope2.View"
             layer="..interfaces.IAde25BaseLayer"
-    />
+    />-->
 
 </configure>

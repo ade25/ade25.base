@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <registry>
 
-    <records interface="ade25.base.browser.controlpanel.IAde25BaseControlPanelImages"
+    <records interface="ade25.base.browser.controlpanel.settings.IAde25BaseControlPanelImages"
              prefix="ade25.base" />
 
-    <records interface="ade25.base.browser.controlpanel.IAde25BaseControlPanelNavigation"
+    <records interface="ade25.base.browser.controlpanel.settings.IAde25BaseControlPanelNavigation"
              prefix="ade25.base" />
 
-    <records interface="ade25.base.browser.controlpanel.IAde25BaseControlPanelCookieConsent"
+    <records interface="ade25.base.browser.controlpanel.settings.IAde25BaseControlPanelCookieConsent"
              prefix="ade25.base" />
 
 </registry>

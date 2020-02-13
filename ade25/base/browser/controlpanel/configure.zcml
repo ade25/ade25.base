@@ -8,7 +8,7 @@
     <browser:page
             name="ade25-base-controlpanel"
             for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-            class="ade25.base.browser.controlpanel.controlpanel.Ade25BaseSettings"
+            class="ade25.base.browser.controlpanel.settings.Ade25BaseSettings"
             permission="cmf.ManagePortal"
             template="settings.pt"
     />
@@ -16,7 +16,7 @@
     <browser:page
             name="ade25-base-settings-images"
             for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-            class="ade25.base.browser.controlpanel.controlpanel.Ade25BaseSettingsImages"
+            class="ade25.base.browser.controlpanel.settings.Ade25BaseSettingsImages"
             template="settings-images.pt"
             permission="cmf.ManagePortal"
     />
@@ -24,7 +24,7 @@
     <browser:page
             name="ade25-base-settings-navigation"
             for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-            class="ade25.base.browser.controlpanel.controlpanel.Ade25BaseSettingsNavigation"
+            class="ade25.base.browser.controlpanel.settings.Ade25BaseSettingsNavigation"
             template="settings-navigation.pt"
             permission="cmf.ManagePortal"
     />
@@ -32,7 +32,7 @@
     <browser:page
             name="ade25-base-settings-cc"
             for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-            class="ade25.base.browser.controlpanel.controlpanel.Ade25BaseSettingsCookieConsent"
+            class="ade25.base.browser.controlpanel.settings.Ade25BaseSettingsCookieConsent"
             template="settings-cc.pt"
             permission="cmf.ManagePortal"
     />

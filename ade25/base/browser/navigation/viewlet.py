@@ -7,7 +7,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import getUtility
 
 from ade25.base import config as ade25_config
-from ade25.base.browser.controlpanel import  IAde25BaseControlPanelNavigation
+from ade25.base.browser.controlpanel.settings import IAde25BaseControlPanelNavigation
 
 
 class SiteNavigationViewlet(ViewletBase):
@@ -57,7 +57,7 @@ class SiteTOCViewlet(ViewletBase):
         registry = getUtility(IRegistry)
         settings = registry.forInterface(
             IAde25BaseControlPanelNavigation,
-            prefix='hph.base')
+            prefix='ade25.base')
         return settings
 
     def section_types(self):
