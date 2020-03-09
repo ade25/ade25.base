@@ -2,20 +2,19 @@
 """ Module providing utility functions for composing and sending
     html and plaintext messages
 """
-try:
-    from StringIO import StringIO ## for Python 2
-except ImportError:
-    from io import StringIO ## for Python 3
+
+from io import StringIO
 import formatter
 import logging
 import lxml
 import os
 import socket
 
-from email.MIMEText import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from email.utils import formataddr
 from email.utils import parseaddr
-from htmllib import HTMLParser
+from html.parser import HTMLParser
 from lxml.html.clean import Cleaner
 from smtplib import SMTPException
 from string import Template
