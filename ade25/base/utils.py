@@ -4,6 +4,7 @@ import os
 import json
 from string import Template
 
+from cryptography.fernet import Fernet
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
@@ -21,6 +22,32 @@ def get_filesystem_template(name, path, data=dict()):
     return composed
 
 
+def encrypt_data_stream(data):
+    """ Encrypt data stream with cryptographic key hashing
+
+    @param data: data string to be encrypted
+    @return: dictionary containing the generated encryption key and the
+    cryptographically signed data and
+    """
+    key = Fernet.generate_key()
+    f = Fernet(key)
+    token = f.encrypt(data)
+    return {key: token}
+
+
+def decrypt_data_stream(key, token):
+    """ Decrypt data stream
+
+    @param key: secret encryption key
+    @param token: cryptographically signed data
+    @return: data string
+    """
+    f = Fernet(key)
+    stream = f.decrypt(token)
+    return stream
+
+
+# TODO: move to config
 def default_image_scales():
     available_scales = (
         'default',
@@ -46,6 +73,7 @@ def default_image_scales():
     return image_scales
 
 
+# TODO: move to config
 def available_cc_positions():
     position_choices = SimpleVocabulary(
         [SimpleTerm(value=u'top', title=_(u'Top')),
