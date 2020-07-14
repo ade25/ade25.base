@@ -2,18 +2,19 @@
 """ Module providing utility functions for composing and sending
     html and plaintext messages
 """
-import cStringIO
+
+from io import StringIO
 import formatter
 import logging
 import lxml
 import os
 import socket
 
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from email.utils import formataddr
 from email.utils import parseaddr
-from htmllib import HTMLParser
+from html.parser import HTMLParser
 from lxml.html.clean import Cleaner
 from smtplib import SMTPException
 from string import Template
@@ -173,7 +174,7 @@ def create_plaintext_message(message):
     to_clean = lxml.html.fromstring(doc)
     cleaned_msg = lxml.html.tostring(cleaner.clean_html(to_clean))
     plain_text_maxcols = 72
-    textout = cStringIO.StringIO()
+    textout = StringIO()
     formtext = formatter.AbstractFormatter(formatter.DumbWriter(
         textout, plain_text_maxcols))
     parser = HTMLParser(formtext)
