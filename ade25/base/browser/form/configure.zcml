@@ -1,0 +1,61 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser"
+        xmlns:z3c="http://namespaces.zope.org/z3c"
+        i18n_domain="ade25.base">
+
+    <!-- Form fields and widgets -->
+    <browser:page
+            for="*"
+            name="ade25-base-form-field"
+            class="ade25.base.browser.form.form.FormFieldBase"
+            permission="zope2.View"
+            layer="ade25.base.interfaces.IAde25BaseLayer"
+    />
+
+    <browser:page
+            for="*"
+            name="ade25-base-form-field-text-line"
+            class="ade25.base.browser.form.form.FormFieldTextLine"
+            template="form-field-text-line.pt"
+            permission="zope2.View"
+            layer="ade25.base.interfaces.IAde25BaseLayer"
+    />
+
+    <browser:page
+            for="*"
+            name="ade25-base-form-field-text-area"
+            class="ade25.base.browser.form.form.FormFieldTextArea"
+            template="form-field-text-area.pt"
+            permission="zope2.View"
+            layer="ade25.base.interfaces.IAde25BaseLayer"
+    />
+
+    <browser:page
+            for="*"
+            name="ade25-base-form-field-select"
+            class="ade25.base.browser.form.form.FormFieldSelect"
+            template="form-field-select.pt"
+            permission="zope2.View"
+            layer="ade25.base.interfaces.IAde25BaseLayer"
+    />
+
+    <browser:page
+            for="*"
+            name="ade25-base-form-field-boolean"
+            class="ade25.base.browser.form.form.FormFieldBoolean"
+            template="form-field-boolean.pt"
+            permission="zope2.View"
+            layer="ade25.base.interfaces.IAde25BaseLayer"
+    />
+
+    <browser:page
+            for="*"
+            name="ade25-base-form-field-privacy"
+            class="ade25.base.browser.form.form.FormFieldPrivacy"
+            template="form-field-privacy.pt"
+            permission="zope2.View"
+            layer="ade25.base.interfaces.IAde25BaseLayer"
+    />
+
+</configure>

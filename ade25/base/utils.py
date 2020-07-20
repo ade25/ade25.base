@@ -4,6 +4,7 @@ import os
 import json
 from string import Template
 
+from Products.CMFCore.interfaces import ISiteRoot
 from cryptography.fernet import Fernet
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
@@ -80,3 +81,38 @@ def available_cc_positions():
          SimpleTerm(value=u'bottom', title=_(u'Bottom'))]
     )
     return position_choices
+
+
+def get_acquisition_chain(context_object):
+    """
+    @return: List of objects from context, its parents to the portal root
+
+    Example::
+
+        chain = getAcquisitionChain(self.context)
+        print "I will look up objects:" + str(list(chain))
+
+    @param context_object: Any content object
+    @return: Iterable of all parents from the direct parent to the site root
+    """
+
+    # It is important to use inner to bootstrap the traverse,
+    # or otherwise we might get surprising parents
+    # E.g. the context of the view has the view as the parent
+    # unless inner is used
+    inner = context_object.aq_inner
+
+    content_node = inner
+
+    while content_node is not None:
+        yield content_node
+
+        if ISiteRoot.providedBy(content_node):
+            break
+        if not hasattr(content_node, "aq_parent"):
+            raise RuntimeError(
+                "Parent traversing interrupted by object: {}".format(
+                    str(content_node)
+                )
+            )
+        content_node = content_node.aq_parent

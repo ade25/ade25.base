@@ -1,0 +1,38 @@
+<div class="o-form__field o-form__field--identifier"
+         tal:define="settings python:view.settings();
+        error python:settings['field_error'];
+        field_has_error python:error and error['active'] == True;
+        value python:settings['field_data']['value']"
+         tal:attributes="class python:settings['field_css_class']"
+         i18n:domain="lra.cos">
+
+    <label tal:attributes="for python:settings['field_identifier']"
+             tal:content="python:settings['field_name']">Field Name</label>
+
+    <div class="o-form__help" tal:condition="python:settings['field_help_text']"
+             tal:content="python:settings['field_help_text']">Help Text</div>
+
+    <select class="app-form-control o-form__control o-form__control--select o-select js-choices-selector" id="identifier" name="identifier"
+             tal:attributes="id python:settings['field_identifier'];name python:settings['field_identifier'];value python:value"
+        tal:define="options python:view.widget_options()">
+        <option disabled selected value i18n:translate=""> -- select an option -- </option>
+        <tal:block tal:repeat="value options">
+            <option tal:define="token python:options[value]"
+                     tal:attributes="value python:value">
+                    ${token}
+            </option>
+        </tal:block>
+    </select>
+
+    <tal:required tal:condition="python:settings['field_required']">
+        <div class="o-form__required-marker">
+            <div class="o-form__required-marker-text">*</div>
+        </div>
+
+        <div class="o-form__help o-form__help--danger"
+                 tal:condition="field_has_error">
+            <span i18n:translate="">This field is required</span>
+        </div>
+    </tal:required>
+
+</div>
