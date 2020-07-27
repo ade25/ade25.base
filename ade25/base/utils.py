@@ -6,6 +6,7 @@ from string import Template
 
 from Products.CMFCore.interfaces import ISiteRoot
 from cryptography.fernet import Fernet
+from plone import api
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
@@ -116,3 +117,40 @@ def get_acquisition_chain(context_object):
                 )
             )
         content_node = content_node.aq_parent
+
+
+def package_image_scales(package_scales, package_directory):
+    image_scales = list()
+    for scale_name in package_scales:
+        scale_info_template = 'image-sizes-{0}.json'.format(scale_name)
+        scale_info = get_filesystem_template(
+            scale_info_template,
+            package_directory
+        )
+        try:
+            scale_info_json = json.loads(scale_info)
+            image_scales.append(json.dumps(scale_info_json))
+        except ValueError:
+            pass
+    return image_scales
+
+
+def register_image_scales(image_scales):
+    """ Run custom add-on package installation code to add custom
+       site specific image scales
+
+    """
+    registry_settings = api.portal.get_registry_record(
+        'ade25.base.responsive_image_scales'
+    )
+    idx = 0
+    for scale in image_scales:
+        if scale not in registry_settings:
+            registry_settings.append(scale)
+            idx += 1
+    if idx > 0:
+        api.portal.set_registry_record(
+            'ade25.base.responsive_image_scales',
+            registry_settings
+        )
+    return image_scales

@@ -1,14 +1,15 @@
 <div metal:define-macro="site-cc"
          i18n:domain="ade25.base">
     <div class="site-cc" id="cookie-consent" tal:condition="view/enabled">
-        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.css" />
-        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.6/cookieconsent.min.js"></script>
-        <tal:cc tal:define="settings view/settings">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js"></script>
+        <tal:cc tal:define="settings python:view.settings()">
             <script>
                 window.addEventListener("load", function(){
-                    var $ccDismiss = "<tal:dismiss tal:content="settings/dismiss_text"></tal:dismiss>",
-                        $ccMessage = "<tal:message tal:content="settings/message"></tal:message>",
-                        $ccPrivacyPolicy = "<tal:link tal:content="settings/link_text"></tal:link>";
+                    var $ccDismiss = '<tal:dismiss tal:content="settings/dismiss_text"></tal:dismiss>',
+                        $ccMessage = '<tal:message tal:content="settings/message"></tal:message>',
+                        $ccPrivacyPolicy = '<tal:link tal:content="python:settings['link_text']"></tal:link>';
+                    console.log($ccPrivacyPolicy);
                     window.cookieconsent.initialise({
                                 "palette": {
                                     "popup": {
