@@ -1,0 +1,16 @@
+<table tal:define="settings python:view.settings();form_data python:view.processed_form_data()">
+    <tbody>
+        <tal:fieldsets tal:repeat="field_set form_data">
+            <tr><td><br /></td></tr>
+            <tr>
+                <td colspan="2"><u tal:content="field_set">Fieldset Label</u><br><br></td>
+            </tr>
+            <tal:fields tal:define="field_data python:form_data[field_set]">
+                <tr tal:repeat="field_name field_data">
+                    <td><b tal:content="field_name">Field name</b></td>
+                    <td tal:content="python:field_data[field_name]">Field value</td>
+                </tr>
+            </tal:fields>
+        </tal:fieldsets>
+    </tbody>
+</table>

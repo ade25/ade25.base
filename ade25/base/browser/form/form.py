@@ -256,3 +256,37 @@ class FormFieldPrivacy(BrowserView):
             privacy_link=self.settings()['field_help_text']['help_text_link_url']
         )
         return addTokenToUrl(action_url)
+
+
+class FormDataTable(BrowserView):
+
+    def __call__(self,
+                 form_configuration=None,
+                 form_data=None,
+                 **kw):
+        self.params = {
+            'form_configuration': form_configuration,
+            'form_data': form_data
+        }
+        self.params.update(kw)
+        return self.render()
+
+    def settings(self):
+        return self.params
+
+    def render(self):
+        return self.index()
+
+    def processed_form_data(self):
+        form_data = self.settings()['form_data']
+        form_settings = self.settings()['form_configuration']
+        processed = dict()
+        for field_set, field_set_definition in form_settings.items():
+            legend = field_set_definition.get('legend', field_set)
+            field_set_data = dict()
+            for field in field_set_definition['fields']:
+                field_id = field['field_id']
+                if field_id in form_data:
+                    field_set_data[field['name']] = form_data.get(field_id, '')
+            processed[legend] = field_set_data
+        return processed
