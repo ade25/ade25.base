@@ -20,7 +20,7 @@ class NavTreeProvider(ContentProviderBase):
     _nav_tree_context = None
 
     _opener_markup_template = (
-        u'<span class="c-toc__link-item c-toc__link-item--icon">'  # noqa: E 501
+        u'<span class="c-nav__link-item c-nav__link-item--icon">'  # noqa: E 501
         u'{opener}'
         u'</span>'
     )
@@ -133,7 +133,8 @@ class NavTreeProvider(ContentProviderBase):
         if sub:
             item.update({
                 'sub': sub,
-                'opener':  self._opener_markup_template.format(**item),
+                'opener':  self._opener_markup_template.format(
+                    opener=self.nav_tree_element_open),
                 'aria_haspopup': ' aria-haspopup="true"',
                 'dropdown_toggle': ' js-dropdown-toggle',
                 'has_sub_class': ' c-nav__item--has-children',
@@ -161,7 +162,7 @@ class NavTreeProvider(ContentProviderBase):
             out += self.render_item(item, iteration)
 
         if not first_run and out:
-            out = self._subtree_markup_wrapper.format(out=out)
+            out = self._subtree_markup_wrapper.format(iteration, out=out)
         return out
 
     def build_tree_deprecated(self, path, first_run=True, iteration=0):
