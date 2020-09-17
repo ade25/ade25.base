@@ -58,4 +58,14 @@
             layer="ade25.base.interfaces.IAde25BaseLayer"
     />
 
+    <!-- Form data rendering -->
+    <browser:page
+            for="*"
+            name="ade25-base-form-data-table"
+            class="ade25.base.browser.form.form.FormDataTable"
+            template="form-data-table.pt"
+            permission="zope2.View"
+            layer="ade25.base.interfaces.IAde25BaseLayer"
+    />
+
 </configure>
