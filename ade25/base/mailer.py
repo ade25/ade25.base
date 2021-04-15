@@ -5,6 +5,7 @@
 
 from io import StringIO
 import formatter
+import html2text
 import logging
 import lxml
 import os
@@ -170,27 +171,43 @@ def create_plaintext_message(message):
     cleaner.javascript = True
     cleaner.style = True
     cleaner.kill_tags = ['style']
-    doc = message.decode('utf-8', 'ignore')
+    try:
+        doc = message.decode('utf-8', 'ignore')
+    except AttributeError:
+        doc = message
     to_clean = lxml.html.fromstring(doc)
     cleaned_msg = lxml.html.tostring(cleaner.clean_html(to_clean))
     plain_text_maxcols = 72
     textout = StringIO()
     formtext = formatter.AbstractFormatter(formatter.DumbWriter(
-        textout, plain_text_maxcols))
-    parser = HTMLParser(formtext)
-    parser.feed(cleaned_msg)
-    parser.close()
-    # append the anchorlist at the bottom of a message
-    # to keep the message readable.
-    counter = 0
-    anchorlist = "\n\n" + ("-" * plain_text_maxcols) + "\n\n"
-    for item in parser.anchorlist:
-        counter += 1
-        if item.startswith('https://'):
-            new_item = item.replace('https://', 'http://')
-        else:
-            new_item = item
-        anchorlist += "[%d] %s\n" % (counter, new_item)
-    text = textout.getvalue() + anchorlist
-    del textout, formtext, parser, anchorlist
+        textout))
+    #parser = HTMLParser(formtext)
+    #parser.feed(cleaned_msg)
+    #parser.close()
+    ## append the anchorlist at the bottom of a message
+    ## to keep the message readable.
+    #counter = 0
+    #anchorlist = "\n\n" + ("-" * plain_text_maxcols) + "\n\n"
+    #for item in parser.anchorlist:
+    #    counter += 1
+    #    if item.startswith('https://'):
+    #        new_item = item.replace('https://', 'http://')
+    #    else:
+    #        new_item = item
+    #    anchorlist += "[%d] %s\n" % (counter, new_item)
+    #text = textout.getvalue() + anchorlist
+    parser = html2text.HTML2Text()
+    # for images, simply show their alt-text
+    parser.ignore_images = False
+    parser.images_to_alt = True
+    # skip links to named anchors
+    parser.skip_internal_links = True
+    # if link text and href is the same, simply show link
+    parser.use_automatic_links = True
+    # protect links from linebreaks - looks good for emails
+    parser.protect_links = True
+    # true to show links next to their text content
+    parser.inline_links = True
+    text = parser.handle(safe_unicode(cleaned_msg))
+    del textout, formtext, parser
     return text
